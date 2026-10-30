@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { PatternWaves } from "./components/pattern-waves";
+import { Hero } from "@/components/ui/hero-1";
 import { SiteHeader } from "./components/site-header";
 import { SiteFooter } from "./components/site-footer";
 
@@ -36,21 +36,16 @@ export const metadata: Metadata = {
 export default function Home() {
   return (
     <main>
-      <section className="hk-hero" aria-labelledby="hero-title">
-        <PatternWaves />
-        <div className="hk-pattern-shade" aria-hidden="true" />
+      <div className="hk-home-top">
         <SiteHeader active="home" />
-        <div className="hk-hero-inner">
-          <div className="hk-hero-copy">
-            <h1 id="hero-title">@hey.kakaa</h1>
-            <p className="hk-hero-intro">Hey, I’m Kaka. I build for Android and share what I learn along the way.</p>
-            <div className="hk-hero-actions">
-              <Link href="/projects" className="hk-primary-button">Explore my projects <ArrowUpRight aria-hidden="true" size={16} /></Link>
-            </div>
-            <p className="hk-hero-note">Creator notes from @hey.kakaa.</p>
-          </div>
-        </div>
-      </section>
+        <Hero
+          eyebrow="Creator story / Android"
+          title="@hey.kakaa"
+          subtitle="Hey, I’m Kaka. I build for Android and share what I learn along the way."
+          ctaLabel="Explore my projects"
+          ctaHref="/projects"
+        />
+      </div>
 
       <section className="hk-section hk-story" id="story" aria-labelledby="story-title">
         <div className="hk-story-intro">
