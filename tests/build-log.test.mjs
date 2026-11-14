@@ -3,7 +3,7 @@ import assert from "node:assert/strict";
 import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
-import { parseEntry, listPublishedEntries, listTimelineEntries, findPublishedEntry } from "../lib/build-log.ts";
+import { buildLogDirectory, parseEntry, listPublishedEntries, listTimelineEntries, findPublishedEntry } from "../lib/build-log.ts";
 
 const entry = (day, status = "published") => `---
 day: ${day}
@@ -107,4 +107,17 @@ test("a missing content directory behaves as an empty unpublished log", () => {
   } finally {
     rmSync(parent, { recursive: true, force: true });
   }
+});
+
+test("Day 01 is published with the approved series and article metadata", () => {
+  const dayOne = findPublishedEntry(buildLogDirectory, 1);
+
+  assert.ok(dayOne, "Day 01 should be available on the public Build Log");
+  assert.equal(dayOne.series, "Documenting the process");
+  assert.equal(dayOne.title, "An idea on paper");
+  assert.equal(dayOne.date, "2026-11-14");
+  assert.equal(dayOne.reelUrl, "https://www.instagram.com/hey.kakaa/reel/DfuWSB5qeSn/");
+  assert.deepEqual(dayOne.tags, []);
+  assert.match(dayOne.body, /## Goal today/);
+  assert.match(dayOne.body, /## Learnings \/ blockers \+ Tomorrow/);
 });

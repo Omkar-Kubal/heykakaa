@@ -5,6 +5,7 @@ import matter from "gray-matter";
 export type BuildLogEntry = {
   day: number;
   slug: string;
+  series?: string;
   title: string;
   date: string;
   summary: string;
@@ -46,6 +47,7 @@ export function parseEntry(source: string, filename: string): BuildLogEntry {
     throw new Error(`${filename}: date must be YYYY-MM-DD`);
   }
   const reelUrl = requiredText(data.reel_url, "reel_url", filename);
+  const series = data.series === undefined ? undefined : requiredText(data.series, "series", filename);
   if (!/^https:\/\/(www\.)?instagram\.com\//.test(reelUrl)) {
     throw new Error(`${filename}: reel_url must be an Instagram HTTPS URL`);
   }
@@ -66,6 +68,7 @@ export function parseEntry(source: string, filename: string): BuildLogEntry {
   return {
     day,
     slug: `day-${day}`,
+    series,
     title: requiredText(data.title, "title", filename),
     date,
     summary: requiredText(data.summary, "summary", filename),

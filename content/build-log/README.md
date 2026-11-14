@@ -8,6 +8,7 @@ public index or day page.
 ```yaml
 ---
 day: 1
+series: "Documenting the process"
 title: "Your approved title"
 date: 2026-11-14
 summary: "One sentence for the timeline and share preview."

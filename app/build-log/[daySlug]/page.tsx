@@ -59,7 +59,7 @@ export default async function DayPage({ params }: Props) {
         <Link className="hk-article-back" href="/build-log"><ArrowLeft aria-hidden="true" size={17} /> All days</Link>
         <article>
           <header className="hk-article-header">
-            <p className="hk-eyebrow">App #11 / Day {String(entry.day).padStart(2, "0")}</p>
+            <p className="hk-eyebrow">{entry.series ?? "App #11"} / Day {String(entry.day).padStart(2, "0")}</p>
             <h1>{entry.title}</h1>
             <p className="hk-article-summary">{entry.summary}</p>
             <time dateTime={entry.date}>{dateLabel}</time>
