@@ -2,13 +2,26 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
-import ReactMarkdown from "react-markdown";
+import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
 import { buildLogDirectory, findPublishedEntry, listPublishedEntries } from "@/lib/build-log";
+import { getArticleSectionId, getArticleSections, type ArticleSection } from "@/lib/article-progress";
 import { SiteHeader } from "../../components/site-header";
 import { SiteFooter } from "../../components/site-footer";
+import { ArticleMotion } from "./article-motion";
 
 type Props = { params: Promise<{ daySlug: string }> };
+
+function createMarkdownComponents(sections: ArticleSection[]): Components {
+  let headingIndex = 0;
+  return {
+    h2: ({ children }) => {
+      const id = getArticleSectionId(sections, headingIndex);
+      headingIndex += 1;
+      return <h2 id={id}>{children}</h2>;
+    },
+  };
+}
 
 export const dynamicParams = false;
 
@@ -51,11 +64,14 @@ export default async function DayPage({ params }: Props) {
   const older = entries[index + 1];
   const dateLabel = new Intl.DateTimeFormat("en", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
     .format(new Date(`${entry.date}T00:00:00Z`));
+  const sections = getArticleSections(entry.body);
+  const markdownComponents = createMarkdownComponents(sections);
 
   return (
     <div className="relative min-h-svh">
       <SiteHeader active="build-log" />
       <main className="hk-article-page" id="main-content">
+        <ArticleMotion />
         <Link className="hk-article-back" href="/build-log"><ArrowLeft aria-hidden="true" size={17} /> All days</Link>
         <article>
           <header className="hk-article-header">
@@ -64,8 +80,18 @@ export default async function DayPage({ params }: Props) {
             <p className="hk-article-summary">{entry.summary}</p>
             <time dateTime={entry.date}>{dateLabel}</time>
           </header>
+          {sections.length > 0 && (
+            <nav className="hk-article-toc" aria-label="Article sections">
+              <p>Jump to a section</p>
+              <ul>
+                {sections.map((section) => (
+                  <li key={section.id}><a href={`#${section.id}`}>{section.title}</a></li>
+                ))}
+              </ul>
+            </nav>
+          )}
           <div className="hk-article-body">
-            <ReactMarkdown remarkPlugins={[remarkGfm]}>{entry.body}</ReactMarkdown>
+            <ReactMarkdown remarkPlugins={[remarkGfm]} components={markdownComponents}>{entry.body}</ReactMarkdown>
           </div>
         </article>
         <div className="hk-article-end">
