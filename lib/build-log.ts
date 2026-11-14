@@ -77,7 +77,15 @@ export function parseEntry(source: string, filename: string): BuildLogEntry {
 }
 
 export function listPublishedEntries(directory = buildLogDirectory): BuildLogEntry[] {
-  const entries = readdirSync(directory)
+  let filenames: string[];
+  try {
+    filenames = readdirSync(directory);
+  } catch (error) {
+    if ((error as NodeJS.ErrnoException).code === "ENOENT") return [];
+    throw error;
+  }
+
+  const entries = filenames
     .filter((filename) => /^day-\d+\.md$/.test(filename))
     .map((filename) => parseEntry(readFileSync(join(directory, filename), "utf8"), filename));
   const days = new Set<number>();

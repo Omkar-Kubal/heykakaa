@@ -97,3 +97,14 @@ test("duplicate day numbers fail instead of creating duplicate public URLs", () 
     rmSync(dir, { recursive: true, force: true });
   }
 });
+
+test("a missing content directory behaves as an empty unpublished log", () => {
+  const parent = mkdtempSync(join(tmpdir(), "heykakaa-log-"));
+  try {
+    const missing = join(parent, "missing-build-log");
+    assert.deepEqual(listPublishedEntries(missing), []);
+    assert.equal(findPublishedEntry(missing, 1), undefined);
+  } finally {
+    rmSync(parent, { recursive: true, force: true });
+  }
+});

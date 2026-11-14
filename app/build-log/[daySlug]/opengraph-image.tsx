@@ -1,10 +1,15 @@
 import { notFound } from "next/navigation";
 import sharp from "sharp";
-import { buildLogDirectory, findPublishedEntry } from "@/lib/build-log";
+import { buildLogDirectory, findPublishedEntry, listPublishedEntries } from "@/lib/build-log";
 
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 export const runtime = "nodejs";
+export const dynamicParams = false;
+
+export function generateStaticParams() {
+  return listPublishedEntries().map((entry) => ({ daySlug: entry.slug }));
+}
 
 function escapeXml(value: string) {
   return value.replace(/[&<>"']/g, (character) => ({

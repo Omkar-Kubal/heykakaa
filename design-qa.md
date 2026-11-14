@@ -31,5 +31,6 @@
 - The 390 px Build Log capture showed the vertical timeline and responsive header. In the production preview, the mobile menu's computed `display` was `block` at a 390 px viewport. Its toggle uses native `<details>/<summary>` semantics; a keyboard interaction check remains pending.
 - With no approved Day 01 article supplied, the sample QA entry was removed. The Build Log now shows Day 01 as coming next, `/build-log/day-1` returns 404, `/day-1` returns a permanent 308 redirect to `/build-log/day-1`, and the sitemap omits Day 01.
 - Home, Projects, Build Log, Roadmap, and Contact returned HTTP 200 in the production preview. The sitemap returned HTTP 200 and uses the `www.heykakaa.com` canonical host.
-- `npm test` passed (9 tests); `npx tsc --noEmit`, `npm run lint`, and `npm run build` passed. Regression tests confirm chronological timeline ordering and that page views survive Strict Mode replay and route changes during initialization.
+- `npm test` passed (10 tests); `npx tsc --noEmit`, `npm run lint`, and `npm run build` passed. Regression tests confirm chronological timeline ordering, missing-content handling, and that page views survive Strict Mode replay and route changes during initialization.
+- A temporary local article produced a valid static PNG share image. With no article present, the day page and its share image both return 404; `/day-1` still redirects with 308.
 - Real article text, publication date, and assets are still needed before Day 01 can be published or the production deployment and Firebase page-view event can be verified.
