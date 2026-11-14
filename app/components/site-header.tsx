@@ -2,12 +2,14 @@ import Image from "next/image";
 import Link from "next/link";
 import { ArrowUpRight, Menu } from "lucide-react";
 
-type Page = "home" | "projects" | "contact";
+type Page = "home" | "projects" | "build-log" | "roadmap" | "contact";
 
 const pages = [
   { href: "/", label: "Home", page: "home" },
   { href: "/projects", label: "Projects", page: "projects" },
-  { href: "/contact", label: "Contact Us", page: "contact" },
+  { href: "/build-log", label: "Build Log", page: "build-log" },
+  { href: "/roadmap", label: "Roadmap", page: "roadmap" },
+  { href: "/contact", label: "Contact", page: "contact" },
 ] as const;
 
 export function SiteHeader({ active }: { active: Page }) {
@@ -30,7 +32,7 @@ export function SiteHeader({ active }: { active: Page }) {
         <details className="hk-mobile-menu">
           <summary aria-label="Open navigation menu"><Menu aria-hidden="true" size={19} /></summary>
           <nav aria-label="Mobile navigation">
-            {pages.map(({ href, label }) => <Link href={href} key={href}>{label}</Link>)}
+            {pages.map(({ href, label, page }) => <Link href={href} key={href} aria-current={active === page ? "page" : undefined}>{label}</Link>)}
           </nav>
         </details>
       </div>

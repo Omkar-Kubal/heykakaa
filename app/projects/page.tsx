@@ -8,6 +8,7 @@ import { SiteFooter } from "../components/site-footer";
 export const metadata: Metadata = {
   title: "Projects | HeyKakaa",
   description: "Explore SyncSpend and SyncTasks, two Android apps by HeyKakaa.",
+  alternates: { canonical: "/projects" },
 };
 
 export default function ProjectsPage() {

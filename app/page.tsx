@@ -31,6 +31,7 @@ const milestones = [
 export const metadata: Metadata = {
   title: "@hey.kakaa | HeyKakaa",
   description: "Hey, I’m Kaka. I build for Android and share what I learn along the way.",
+  alternates: { canonical: "/" },
 };
 
 export default function Home() {
@@ -46,6 +47,20 @@ export default function Home() {
           ctaHref="/projects"
         />
       </div>
+
+      <section className="hk-section hk-current-build" aria-labelledby="current-build-title">
+        <div>
+          <p className="hk-eyebrow">Now building / App #11</p>
+          <h2 className="hk-section-heading" id="current-build-title">Follow the build.</h2>
+          <p>I’m sharing the process of making an Android screen-time app, day by day.</p>
+        </div>
+        <div className="hk-current-build-actions">
+          <Link href="/build-log" className="hk-primary-button">Read the Build Log <ArrowUpRight aria-hidden="true" size={16} /></Link>
+          <a href="https://www.instagram.com/hey.kakaa/" target="_blank" rel="noopener noreferrer">Follow @hey.kakaa <ArrowUpRight aria-hidden="true" size={16} /></a>
+        </div>
+      </section>
+
+      <hr className="hk-rule" />
 
       <section className="hk-section hk-story" id="story" aria-labelledby="story-title">
         <div className="hk-story-intro">

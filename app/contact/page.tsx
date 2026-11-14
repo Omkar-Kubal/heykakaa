@@ -8,6 +8,7 @@ const instagramUrl = "https://www.instagram.com/hey.kakaa/";
 export const metadata: Metadata = {
   title: "Contact | HeyKakaa",
   description: "Get in touch with HeyKakaa about SyncSpend, SyncTasks, or a collaboration.",
+  alternates: { canonical: "/contact" },
 };
 
 export default function ContactPage() {

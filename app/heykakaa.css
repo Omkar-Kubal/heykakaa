@@ -46,6 +46,61 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .hk-bottom-cta h2 { margin: 14px 0 0; font-size: clamp(28px, 3.3vw, 42px); line-height: 1.1; letter-spacing: -.035em; font-weight: 600; }
 .hk-bottom-cta p:last-child { max-width: 550px; color: #a1a1a1; line-height: 1.65; }
 .hk-footer { max-width: 1280px; margin: 0 auto; padding: 36px 64px 52px; border-top: 1px solid #ffffff1a; color: #a1a1a1; font-size: 12px; }
+.hk-footer { display: flex; justify-content: space-between; flex-wrap: wrap; gap: 12px 24px; }
+.hk-current-build { display: flex; align-items: end; justify-content: space-between; gap: 40px; }
+.hk-current-build > div:first-child { max-width: 700px; }
+.hk-current-build p:last-child { margin: 22px 0 0; color: #a1a1a1; font-size: 18px; line-height: 1.65; }
+.hk-current-build-actions { display: flex; flex-direction: column; align-items: flex-start; gap: 20px; flex: none; }
+.hk-current-build-actions .hk-primary-button { min-height: 48px; padding: 0 18px; }
+.hk-current-build-actions > a:last-child { display: inline-flex; align-items: center; gap: 7px; color: #bdbdbd; font-size: 14px; text-decoration: underline; text-underline-offset: 4px; }
+
+.hk-log-surface { min-height: 100svh; background-color: #0a0a0a; background-image: linear-gradient(to right, #ffffff16 1px, transparent 1px), linear-gradient(to bottom, #ffffff16 1px, transparent 1px); background-size: 96px 96px; background-repeat: repeat; }
+.hk-log-page { max-width: 980px; min-height: 100svh; margin: 0 auto; padding: 210px 64px 120px; }
+.hk-log-intro { max-width: 850px; }
+.hk-log-eyebrow { display: inline-flex; align-items: center; min-height: 38px; padding: 7px 19px; border: 1px solid #ffffff20; border-radius: 999px; background: #111b; color: #b8b8b8; font-size: 13px; font-weight: 500; letter-spacing: .015em; text-transform: uppercase; }
+.hk-log-intro h1 { margin: 30px 0 20px; font-size: clamp(64px, 9vw, 108px); line-height: .98; font-weight: 600; letter-spacing: -.065em; }
+.hk-log-intro > p:last-child { max-width: 760px; margin: 0; color: #a1a1a1; font-size: clamp(18px, 2vw, 23px); line-height: 1.55; letter-spacing: -.02em; }
+.hk-build-timeline { margin: 105px 0 0 10px; padding: 0 0 0 45px; list-style: none; border-left: 2px solid #8a8a8a70; }
+.hk-build-day { position: relative; padding: 0 0 86px; }
+.hk-build-dot { position: absolute; top: 3px; left: -56px; width: 20px; height: 20px; border: 2px solid #3080ff; border-radius: 50%; background: #3080ff; }
+.hk-build-day-number { margin: 0 0 14px; color: #fafafa; font-size: 16px; font-weight: 600; letter-spacing: .035em; text-transform: uppercase; }
+.hk-build-day h2 { margin: 0; font-size: clamp(30px, 4vw, 46px); line-height: 1.12; font-weight: 600; letter-spacing: -.045em; }
+.hk-build-day h2 a:hover { color: #70a8ff; }
+.hk-build-summary { max-width: 650px; margin: 22px 0 0; color: #a1a1a1; font-size: 19px; line-height: 1.55; }
+.hk-build-links { display: flex; align-items: center; flex-wrap: wrap; gap: 20px 36px; margin-top: 30px; }
+.hk-build-links > a:first-child { display: inline-flex; align-items: center; gap: 7px; color: #c6c6c6; text-decoration: underline; text-underline-offset: 4px; }
+.hk-build-links .hk-primary-button { min-height: 48px; padding: 0 20px; font-size: 16px; }
+.hk-build-day-upcoming { padding-bottom: 30px; color: #a1a1a1; }
+.hk-build-day-upcoming .hk-build-dot { border-color: #c6c6c6; background: #0a0a0a; }
+.hk-build-day-upcoming .hk-build-day-number { color: #c6c6c6; }
+.hk-build-coming { margin: 0; font-size: 22px; }
+
+.hk-article-page { max-width: 900px; margin: 0 auto; padding: 170px 64px 100px; }
+.hk-article-back { display: inline-flex; align-items: center; gap: 8px; color: #a1a1a1; font-size: 14px; }
+.hk-article-back:hover, .hk-article-end a:hover, .hk-article-nav a:hover { color: #70a8ff; }
+.hk-article-header { margin-top: 60px; padding-bottom: 42px; border-bottom: 1px solid #ffffff26; }
+.hk-article-header h1 { margin: 18px 0 20px; font-size: clamp(44px, 7vw, 72px); line-height: 1.05; font-weight: 600; letter-spacing: -.055em; text-wrap: balance; }
+.hk-article-summary { max-width: 680px; margin: 0 0 20px; color: #b6b6b6; font-size: 21px; line-height: 1.5; }
+.hk-article-header time { color: #a1a1a1; font-size: 14px; }
+.hk-article-body { max-width: 68ch; padding: 26px 0 50px; color: #d4d4d4; font-size: 17px; line-height: 1.8; }
+.hk-article-body h2 { margin: 54px 0 18px; color: #fafafa; font-size: 29px; line-height: 1.2; font-weight: 600; letter-spacing: -.035em; }
+.hk-article-body h3 { margin: 34px 0 14px; color: #fafafa; font-size: 22px; font-weight: 600; }
+.hk-article-body p, .hk-article-body ul, .hk-article-body ol { margin: 0 0 20px; }
+.hk-article-body ul, .hk-article-body ol { padding-left: 24px; }
+.hk-article-body li { margin-bottom: 9px; }
+.hk-article-body a { color: #70a8ff; text-decoration: underline; text-underline-offset: 3px; }
+.hk-article-body img { display: block; max-width: 100%; height: auto; margin: 26px 0; border-radius: 9px; }
+.hk-article-body blockquote { margin: 28px 0; padding-left: 20px; border-left: 3px solid #3080ff; color: #b6b6b6; }
+.hk-article-body code { padding: 2px 5px; border-radius: 4px; background: #232323; font-size: .88em; }
+.hk-article-body pre { overflow-x: auto; margin: 24px 0; padding: 18px; border-radius: 9px; background: #171717; }
+.hk-article-body pre code { padding: 0; background: none; }
+.hk-article-end { display: flex; flex-wrap: wrap; gap: 18px 36px; padding: 32px 0; border-top: 1px solid #ffffff26; }
+.hk-article-end a, .hk-article-nav a { display: inline-flex; align-items: center; gap: 8px; }
+.hk-article-nav { display: flex; justify-content: space-between; gap: 20px; padding-top: 24px; border-top: 1px solid #ffffff26; }
+.hk-roadmap-page { min-height: calc(100svh - 128px); }
+.hk-roadmap-page h1 { margin: 20px 0 22px; font-size: clamp(54px, 7vw, 88px); line-height: 1; font-weight: 600; letter-spacing: -.06em; }
+.hk-roadmap-page > p:nth-of-type(2) { max-width: 600px; margin: 0 0 36px; color: #a1a1a1; font-size: 19px; line-height: 1.65; }
+.hk-roadmap-page .hk-primary-button { min-height: 48px; padding: 0 18px; }
 
 .hk-page { max-width: 1280px; margin: 0 auto; padding: 176px 64px 80px; }
 .hk-page-intro { display: grid; grid-template-columns: 2fr 1fr; gap: 64px; align-items: end; }
@@ -111,5 +166,24 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
   .hk-bottom-cta { padding: 48px 24px; flex-direction: column; align-items: start; }
   .hk-footer { padding: 32px 24px 44px; }
   .hk-contact-grid { margin-top: 64px; padding-top: 48px; }
+  .hk-current-build { align-items: flex-start; flex-direction: column; }
+  .hk-current-build-actions { gap: 18px; }
+  .hk-log-surface { background-size: 72px 64px; }
+  .hk-log-page { padding: 160px 24px 100px; }
+  .hk-log-intro h1 { margin-top: 26px; font-size: clamp(58px, 15vw, 72px); }
+  .hk-log-intro > p:last-child { font-size: 17px; }
+  .hk-build-timeline { margin-top: 70px; margin-left: 8px; padding-left: 30px; }
+  .hk-build-dot { left: -40px; width: 18px; height: 18px; }
+  .hk-build-day { padding-bottom: 64px; }
+  .hk-build-day h2 { font-size: 30px; }
+  .hk-build-summary { margin-top: 16px; font-size: 17px; }
+  .hk-build-links { align-items: flex-start; flex-direction: column; gap: 24px; margin-top: 24px; }
+  .hk-build-links .hk-primary-button { min-height: 48px; }
+  .hk-article-page { padding: 136px 24px 80px; }
+  .hk-article-header { margin-top: 48px; }
+  .hk-article-header h1 { font-size: 44px; }
+  .hk-article-summary { font-size: 18px; }
+  .hk-article-body { font-size: 16px; }
+  .hk-article-body h2 { font-size: 26px; }
 }
 @media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } .hk-center-hero-horizon, .hk-center-hero h1, .hk-center-hero-content > p, .hk-center-hero-button { animation: none; } }
