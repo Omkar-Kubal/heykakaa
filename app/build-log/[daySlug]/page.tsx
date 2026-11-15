@@ -5,14 +5,17 @@ import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
 import ReactMarkdown, { type Components } from "react-markdown";
 import remarkGfm from "remark-gfm";
-import { buildLogDirectory, findPublishedEntry, listPublishedEntries } from "@/lib/build-log";
+import { buildLogDirectory, findPublishedEntryBySlug, listPublishedEntries } from "@/lib/build-log";
 import { getArticleSectionId, getArticleSections, type ArticleSection } from "@/lib/article-progress";
 import { SiteHeader } from "../../components/site-header";
 import { SiteFooter } from "../../components/site-footer";
 import { ArticleMotion } from "./article-motion";
 
 type Props = { params: Promise<{ daySlug: string }> };
-const introductionReelUrl = "https://www.instagram.com/reel/DfsObcvKsK8/";
+
+function entryLabel(entry: NonNullable<ReturnType<typeof findPublishedEntryBySlug>>) {
+  return entry.kind === "introduction" ? "Introduction" : `Day ${String(entry.day).padStart(2, "0")}`;
+}
 
 function createMarkdownComponents(sections: ArticleSection[]): Components {
   let headingIndex = 0;
@@ -32,8 +35,7 @@ export function generateStaticParams() {
 }
 
 function getEntry(daySlug: string) {
-  const match = /^day-([1-9]\d*)$/.exec(daySlug);
-  return match ? findPublishedEntry(buildLogDirectory, Number(match[1])) : undefined;
+  return findPublishedEntryBySlug(buildLogDirectory, daySlug);
 }
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
@@ -41,13 +43,14 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   const entry = getEntry(daySlug);
   if (!entry) notFound();
   const path = `/build-log/${entry.slug}`;
+  const title = entry.kind === "introduction" ? entry.title : `${entryLabel(entry)}: ${entry.title}`;
   return {
-    title: `Day ${entry.day}: ${entry.title} | HeyKakaa`,
+    title: `${title} | HeyKakaa`,
     description: entry.summary,
     alternates: { canonical: path },
     openGraph: {
       type: "article",
-      title: `Day ${entry.day}: ${entry.title}`,
+      title,
       description: entry.summary,
       url: path,
       images: [`${path}/opengraph-image`],
@@ -61,7 +64,7 @@ export default async function DayPage({ params }: Props) {
   if (!entry) notFound();
 
   const entries = listPublishedEntries();
-  const index = entries.findIndex((item) => item.day === entry.day);
+  const index = entries.findIndex((item) => item.slug === entry.slug);
   const newer = entries[index - 1];
   const older = entries[index + 1];
   const dateLabel = new Intl.DateTimeFormat("en", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
@@ -76,16 +79,16 @@ export default async function DayPage({ params }: Props) {
         <ArticleMotion />
         <Link className="hk-article-back" href="/build-log"><ArrowLeft aria-hidden="true" size={17} /> All days</Link>
         <article>
-          <header className={`hk-article-header${entry.day === 1 ? " hk-article-header-with-cover" : ""}`}>
+          <header className={`hk-article-header${entry.kind === "introduction" ? " hk-article-header-with-cover" : ""}`}>
             <div className="hk-article-header-content">
-              <p className="hk-eyebrow">{entry.series ?? "App #11"} / Day {String(entry.day).padStart(2, "0")}</p>
+              <p className="hk-eyebrow">{entry.series ?? "App #11"} / {entryLabel(entry)}</p>
               <h1>{entry.title}</h1>
               <p className="hk-article-summary">{entry.summary}</p>
               <time dateTime={entry.date}>{dateLabel}</time>
             </div>
-            {entry.day === 1 && (
+            {entry.kind === "introduction" && (
               <figure className="hk-article-cover">
-                <a href={introductionReelUrl} target="_blank" rel="noopener noreferrer" className="hk-article-cover-link">
+                <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer" className="hk-article-cover-link">
                   <Image
                     src="/assets/instagram-intro-reel-cover.png"
                     alt="Instagram introduction Reel cover: @hey.kakaa and the words “Not Day 1 Yet”."
@@ -96,7 +99,7 @@ export default async function DayPage({ params }: Props) {
                   />
                 </a>
                 <figcaption>
-                  <a href={introductionReelUrl} target="_blank" rel="noopener noreferrer">Watch the introduction Reel <ArrowUpRight aria-hidden="true" size={14} /></a>
+                  <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Watch the introduction Reel <ArrowUpRight aria-hidden="true" size={14} /></a>
                 </figcaption>
               </figure>
             )}
@@ -116,12 +119,12 @@ export default async function DayPage({ params }: Props) {
           </div>
         </article>
         <div className="hk-article-end">
-          <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Watch the Day {String(entry.day).padStart(2, "0")} reel <ArrowUpRight aria-hidden="true" size={17} /></a>
+          <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Watch the {entryLabel(entry)} reel <ArrowUpRight aria-hidden="true" size={17} /></a>
           <a href="https://www.instagram.com/hey.kakaa/" target="_blank" rel="noopener noreferrer">Follow @hey.kakaa <ArrowUpRight aria-hidden="true" size={17} /></a>
         </div>
         <nav className="hk-article-nav" aria-label="Build Log days">
-          {older ? <Link href={`/build-log/${older.slug}`}><ArrowLeft aria-hidden="true" size={17} /> Day {String(older.day).padStart(2, "0")}</Link> : <span />}
-          {newer ? <Link href={`/build-log/${newer.slug}`}>Day {String(newer.day).padStart(2, "0")} <ArrowRight aria-hidden="true" size={17} /></Link> : <span />}
+          {older ? <Link href={`/build-log/${older.slug}`}><ArrowLeft aria-hidden="true" size={17} /> {entryLabel(older)}</Link> : <span />}
+          {newer ? <Link href={`/build-log/${newer.slug}`}>{entryLabel(newer)} <ArrowRight aria-hidden="true" size={17} /></Link> : <span />}
         </nav>
       </main>
       <SiteFooter />

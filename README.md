@@ -31,11 +31,13 @@ site footer discloses visit measurement.
 
 ## Build Log publishing
 
-Add `content/build-log/day-NN.md` using the template in
-`content/build-log/README.md`. Keep the entry as `draft` until its text, date,
-links, and images are approved; change the status to `published` to include it
-in the index, sitemap, metadata, and static day route. The short `/day-N`
-redirect points to `/build-log/day-N`.
+Add `content/build-log/introduction.md` or `content/build-log/day-NN.md` using
+the templates in `content/build-log/README.md`. Keep each entry as `draft`
+until its text, date, links, and images are approved; change the status to
+`published` to include it in the index, sitemap, metadata, and static article
+route. `/day-1` and the old `/build-log/day-1` address redirect to
+`/build-log/introduction`; other short `/day-N` redirects point to
+`/build-log/day-N`.
 
 ## Source and assets
 

@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { listTimelineEntries } from "@/lib/build-log";
+import { getNextDayNumber, listTimelineEntries } from "@/lib/build-log";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 
@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 
 export default function BuildLogPage() {
   const entries = listTimelineEntries();
-  const nextDay = entries.length ? Math.max(...entries.map((entry) => entry.day)) + 1 : 1;
+  const nextDay = getNextDayNumber(entries);
 
   return (
     <div className="hk-log-surface">
@@ -25,17 +25,17 @@ export default function BuildLogPage() {
           <p>I’m building App #11 in public — an Android app to make time spent on Reels and Shorts easier to notice.</p>
         </div>
 
-        <ol className="hk-build-timeline" aria-label="Build Log days">
+        <ol className="hk-build-timeline" aria-label="Build Log entries">
           {entries.map((entry) => (
-            <li className="hk-build-day" key={entry.day}>
+            <li className="hk-build-day" key={entry.slug}>
               <span className="hk-build-dot" aria-hidden="true" />
               <div>
-                <p className="hk-build-day-number">Day {String(entry.day).padStart(2, "0")}</p>
+                <p className="hk-build-day-number">{entry.kind === "introduction" ? "Introduction" : `Day ${String(entry.day).padStart(2, "0")}`}</p>
                 <h2><Link href={`/build-log/${entry.slug}`}>{entry.title}</Link></h2>
                 <p className="hk-build-summary">{entry.summary}</p>
                 <div className="hk-build-links">
                   <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Instagram Reel <ArrowUpRight aria-hidden="true" size={17} /></a>
-                  <Link className="hk-primary-button" href={`/build-log/${entry.slug}`}>Read Day {String(entry.day).padStart(2, "0")} <ArrowUpRight aria-hidden="true" size={17} /></Link>
+                  <Link className="hk-primary-button" href={`/build-log/${entry.slug}`}>Read {entry.kind === "introduction" ? "introduction" : `Day ${String(entry.day).padStart(2, "0")}`} <ArrowUpRight aria-hidden="true" size={17} /></Link>
                 </div>
               </div>
             </li>
