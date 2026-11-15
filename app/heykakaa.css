@@ -79,6 +79,11 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 .hk-article-back { display: inline-flex; align-items: center; gap: 8px; color: #a1a1a1; font-size: 14px; }
 .hk-article-back:hover, .hk-article-end a:hover, .hk-article-nav a:hover { color: #70a8ff; }
 .hk-article-header { margin-top: 60px; padding-bottom: 42px; border-bottom: 1px solid #ffffff26; }
+.hk-article-header-with-cover { display: grid; grid-template-columns: minmax(0, 1fr) 230px; align-items: center; gap: 32px; }
+.hk-article-header-content { min-width: 0; }
+.hk-article-cover { width: 230px; margin: 0; justify-self: end; }
+.hk-article-cover img { display: block; width: 100%; height: auto; border: 1px solid #ffffff24; border-radius: 12px; }
+.hk-article-cover figcaption { margin-top: 10px; color: #a1a1a1; font-size: 12px; text-align: center; }
 .hk-article-header h1 { margin: 18px 0 20px; font-size: clamp(44px, 7vw, 72px); line-height: 1.05; font-weight: 600; letter-spacing: -.055em; text-wrap: balance; }
 .hk-article-summary { max-width: 680px; margin: 0 0 20px; color: #b6b6b6; font-size: 21px; line-height: 1.5; }
 .hk-article-header time { color: #a1a1a1; font-size: 14px; }
@@ -203,6 +208,11 @@ a:focus-visible, button:focus-visible, input:focus-visible { outline: 2px solid 
 @media (prefers-reduced-motion: reduce) {
   .hk-article-progress > span, .hk-article-toc a { transition: none; }
   .hk-article-reveal, .hk-article-reveal.is-visible { opacity: 1; transform: none; transition: none; }
+}
+
+@media (max-width: 640px) {
+  .hk-article-header-with-cover { grid-template-columns: minmax(0, 1fr); gap: 26px; }
+  .hk-article-cover { width: min(100%, 220px); justify-self: center; }
 }
 
 @media print {

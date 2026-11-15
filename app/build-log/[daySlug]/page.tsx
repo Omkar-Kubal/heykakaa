@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { ArrowLeft, ArrowRight, ArrowUpRight } from "lucide-react";
@@ -74,11 +75,26 @@ export default async function DayPage({ params }: Props) {
         <ArticleMotion />
         <Link className="hk-article-back" href="/build-log"><ArrowLeft aria-hidden="true" size={17} /> All days</Link>
         <article>
-          <header className="hk-article-header">
-            <p className="hk-eyebrow">{entry.series ?? "App #11"} / Day {String(entry.day).padStart(2, "0")}</p>
-            <h1>{entry.title}</h1>
-            <p className="hk-article-summary">{entry.summary}</p>
-            <time dateTime={entry.date}>{dateLabel}</time>
+          <header className={`hk-article-header${entry.day === 1 ? " hk-article-header-with-cover" : ""}`}>
+            <div className="hk-article-header-content">
+              <p className="hk-eyebrow">{entry.series ?? "App #11"} / Day {String(entry.day).padStart(2, "0")}</p>
+              <h1>{entry.title}</h1>
+              <p className="hk-article-summary">{entry.summary}</p>
+              <time dateTime={entry.date}>{dateLabel}</time>
+            </div>
+            {entry.day === 1 && (
+              <figure className="hk-article-cover">
+                <Image
+                  src="/assets/instagram-intro-reel-cover.png"
+                  alt="Instagram introduction Reel cover: @hey.kakaa and the words “Not Day 1 Yet”."
+                  width={916}
+                  height={1717}
+                  sizes="(max-width: 640px) 220px, 230px"
+                  priority
+                />
+                <figcaption>Instagram introduction Reel</figcaption>
+              </figure>
+            )}
           </header>
           {sections.length > 0 && (
             <nav className="hk-article-toc" aria-label="Article sections">
