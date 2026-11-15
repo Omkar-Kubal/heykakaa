@@ -12,6 +12,7 @@ import { SiteFooter } from "../../components/site-footer";
 import { ArticleMotion } from "./article-motion";
 
 type Props = { params: Promise<{ daySlug: string }> };
+const introductionReelUrl = "https://www.instagram.com/reel/DfsObcvKsK8/";
 
 function createMarkdownComponents(sections: ArticleSection[]): Components {
   let headingIndex = 0;
@@ -84,15 +85,19 @@ export default async function DayPage({ params }: Props) {
             </div>
             {entry.day === 1 && (
               <figure className="hk-article-cover">
-                <Image
-                  src="/assets/instagram-intro-reel-cover.png"
-                  alt="Instagram introduction Reel cover: @hey.kakaa and the words “Not Day 1 Yet”."
-                  width={916}
-                  height={1717}
-                  sizes="(max-width: 640px) 220px, 230px"
-                  priority
-                />
-                <figcaption>Instagram introduction Reel</figcaption>
+                <a href={introductionReelUrl} target="_blank" rel="noopener noreferrer" className="hk-article-cover-link">
+                  <Image
+                    src="/assets/instagram-intro-reel-cover.png"
+                    alt="Instagram introduction Reel cover: @hey.kakaa and the words “Not Day 1 Yet”."
+                    width={916}
+                    height={1717}
+                    sizes="(max-width: 640px) 220px, 230px"
+                    priority
+                  />
+                </a>
+                <figcaption>
+                  <a href={introductionReelUrl} target="_blank" rel="noopener noreferrer">Watch the introduction Reel <ArrowUpRight aria-hidden="true" size={14} /></a>
+                </figcaption>
               </figure>
             )}
           </header>

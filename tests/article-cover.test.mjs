@@ -10,3 +10,9 @@ test("Day 01 includes the supplied introduction Reel cover with descriptive alt 
   assert.ok(existsSync(imagePath), "the introduction Reel cover should be in public assets");
   assert.match(pageSource, /Instagram introduction Reel cover: @hey\.kakaa and the words/);
 });
+
+test("the introduction Reel cover links to the supplied Instagram permalink", () => {
+  const pageSource = readFileSync(join(process.cwd(), "app", "build-log", "[daySlug]", "page.tsx"), "utf8");
+
+  assert.match(pageSource, /https:\/\/www\.instagram\.com\/reel\/DfsObcvKsK8\//);
+});
