@@ -114,7 +114,7 @@ test("Day 01 is published with the approved series and article metadata", () => 
 
   assert.ok(dayOne, "Day 01 should be available on the public Build Log");
   assert.equal(dayOne.series, "Documenting the process");
-  assert.equal(dayOne.title, "An idea on paper");
+  assert.equal(dayOne.title, "Introduction: Not Day 1 Yet");
   assert.equal(dayOne.date, "2026-11-14");
   assert.equal(dayOne.reelUrl, "https://www.instagram.com/hey.kakaa/reel/DfuWSB5qeSn/");
   assert.deepEqual(dayOne.tags, []);

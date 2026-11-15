@@ -1,7 +1,7 @@
 ---
 day: 1
 series: "Documenting the process"
-title: "An idea on paper"
+title: "Introduction: Not Day 1 Yet"
 date: 2026-11-14
 summary: >-
   I’m working on a free, private mobile app that helps people understand their short-form video habits. It counts viewing events across selected feeds, shows a daily total and history, and uses an expressive character to reflect progress. There’s also an optional floating counter while you scroll. The goal is to help people improve against their own past habits.
