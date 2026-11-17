@@ -79,27 +79,27 @@ export default async function DayPage({ params }: Props) {
         <ArticleMotion />
         <Link className="hk-article-back" href="/build-log"><ArrowLeft aria-hidden="true" size={17} /> All days</Link>
         <article>
-          <header className={`hk-article-header${entry.kind === "introduction" ? " hk-article-header-with-cover" : ""}`}>
+          <header className={`hk-article-header${entry.coverImage ? " hk-article-header-with-cover" : ""}`}>
             <div className="hk-article-header-content">
               <p className="hk-eyebrow">{entry.series ?? "App #11"} / {entryLabel(entry)}</p>
               <h1>{entry.title}</h1>
               <p className="hk-article-summary">{entry.summary}</p>
               <time dateTime={entry.date}>{dateLabel}</time>
             </div>
-            {entry.kind === "introduction" && (
+            {entry.coverImage && entry.coverAlt && entry.coverWidth && entry.coverHeight && (
               <figure className="hk-article-cover">
                 <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer" className="hk-article-cover-link">
                   <Image
-                    src="/assets/instagram-intro-reel-cover.png"
-                    alt="Instagram introduction Reel cover: @hey.kakaa and the words “Not Day 1 Yet”."
-                    width={916}
-                    height={1717}
+                    src={entry.coverImage}
+                    alt={entry.coverAlt}
+                    width={entry.coverWidth}
+                    height={entry.coverHeight}
                     sizes="(max-width: 640px) 220px, 230px"
                     priority
                   />
                 </a>
                 <figcaption>
-                  <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Watch the introduction Reel <ArrowUpRight aria-hidden="true" size={14} /></a>
+                  <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Watch the {entryLabel(entry)} Reel <ArrowUpRight aria-hidden="true" size={14} /></a>
                 </figcaption>
               </figure>
             )}

@@ -4,7 +4,7 @@ import { mkdtempSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { buildLogDirectory, parseEntry, listPublishedEntries, listTimelineEntries, findPublishedEntry, findPublishedEntryBySlug, getNextDayNumber } from "../lib/build-log.ts";
-import { getBuildLogRedirects } from "../next.config.ts";
+import { getBuildLogRedirects, getBuildLogRedirectsForDirectory } from "../next.config.ts";
 
 const entry = (day, status = "published") => `---
 day: ${day}
@@ -66,6 +66,22 @@ test("parseEntry exposes valid metadata and article body", () => {
   assert.equal(parsed.reelUrl, "https://www.instagram.com/reel/example1/");
   assert.deepEqual(parsed.tags, ["android", "build-in-public"]);
   assert.match(parsed.body, /## Decisions \+ why/);
+});
+
+test("parseEntry exposes a cover image and alt text for a numbered day", () => {
+  const withCover = entry(1).replace("status: published", 'cover_image: "/assets/day-01-cover.webp"\ncover_alt: "Day 01 Building App #11 Reel cover"\ncover_width: 1080\ncover_height: 1920\nstatus: published');
+  const parsed = parseEntry(withCover, "day-01.md");
+
+  assert.equal(parsed.coverImage, "/assets/day-01-cover.webp");
+  assert.equal(parsed.coverAlt, "Day 01 Building App #11 Reel cover");
+  assert.equal(parsed.coverWidth, 1080);
+  assert.equal(parsed.coverHeight, 1920);
+});
+
+test("parseEntry rejects a cover image without descriptive alt text", () => {
+  const missingAlt = entry(1).replace("status: published", 'cover_image: "/assets/day-01-cover.webp"\nstatus: published');
+
+  assert.throws(() => parseEntry(missingAlt, "day-01.md"), /cover_alt/i);
 });
 
 test("parseEntry supports a non-numbered introduction permalink", () => {
@@ -187,6 +203,23 @@ test("legacy introduction URLs redirect temporarily until Day 01 content exists"
   const whenDayOneExists = getBuildLogRedirects(true);
   assert.equal(whenDayOneExists.some((redirect) => redirect.source === "/build-log/day-1"), false);
   assert.ok(whenDayOneExists.some((redirect) => redirect.source === "/day-:day(\\d+)" && redirect.destination === "/build-log/day-:day"));
+});
+
+test("a drafted Day 01 keeps the short URL on the published Introduction", () => {
+  const dir = mkdtempSync(join(tmpdir(), "heykakaa-log-"));
+  try {
+    writeFileSync(join(dir, "introduction.md"), introduction());
+    writeFileSync(join(dir, "day-01.md"), entry(1, "draft"));
+
+    const redirects = getBuildLogRedirectsForDirectory(dir);
+    assert.ok(redirects.some((redirect) => redirect.source === "/day-1" && redirect.destination === "/build-log/introduction"));
+
+    writeFileSync(join(dir, "day-01.md"), entry(1));
+    const publishedRedirects = getBuildLogRedirectsForDirectory(dir);
+    assert.equal(publishedRedirects.some((redirect) => redirect.source === "/day-1" && redirect.destination === "/build-log/introduction"), false);
+  } finally {
+    rmSync(dir, { recursive: true, force: true });
+  }
 });
 
 test("the introduction remains identifiable without assuming it is the only published entry", () => {

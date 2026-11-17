@@ -6,6 +6,10 @@ date: 2026-11-13
 summary: >-
   I’m working on a free, private mobile app that helps people understand their short-form video habits. It counts viewing events across selected feeds, shows a daily total and history, and uses an expressive character to reflect progress. There’s also an optional floating counter while you scroll. The goal is to help people improve against their own past habits.
 reel_url: "https://www.instagram.com/reel/DfsObcvKsK8/"
+cover_image: "/assets/instagram-intro-reel-cover.png"
+cover_alt: "Instagram introduction Reel cover: @hey.kakaa and the words Not Day 1 Yet."
+cover_width: 916
+cover_height: 1717
 tags: []
 status: published
 ---

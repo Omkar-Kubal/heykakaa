@@ -11,6 +11,10 @@ export type BuildLogEntry = {
   date: string;
   summary: string;
   reelUrl: string;
+  coverImage?: string;
+  coverAlt?: string;
+  coverWidth?: number;
+  coverHeight?: number;
   tags: string[];
   status: "draft" | "published";
   body: string;
@@ -61,6 +65,19 @@ export function parseEntry(source: string, filename: string): BuildLogEntry {
   if (!/^https:\/\/(www\.)?instagram\.com\//.test(reelUrl)) {
     throw new Error(`${filename}: reel_url must be an Instagram HTTPS URL`);
   }
+  const hasCover = data.cover_image !== undefined;
+  if (hasCover) {
+    const coverImage = requiredText(data.cover_image, "cover_image", filename);
+    if (!/^\/assets\/[a-zA-Z0-9._/-]+$/.test(coverImage)) {
+      throw new Error(`${filename}: cover_image must be a local /assets/ path`);
+    }
+    requiredText(data.cover_alt, "cover_alt", filename);
+    if (!Number.isInteger(data.cover_width) || data.cover_width < 1 || !Number.isInteger(data.cover_height) || data.cover_height < 1) {
+      throw new Error(`${filename}: cover_width and cover_height must be positive integers`);
+    }
+  } else if (data.cover_alt !== undefined || data.cover_width !== undefined || data.cover_height !== undefined) {
+    throw new Error(`${filename}: cover_image is required when cover metadata is present`);
+  }
   if (!Array.isArray(data.tags) || !data.tags.every((tag: unknown) => typeof tag === "string" && tag.trim())) {
     throw new Error(`${filename}: tags must be a list of words`);
   }
@@ -84,6 +101,10 @@ export function parseEntry(source: string, filename: string): BuildLogEntry {
     date,
     summary: requiredText(data.summary, "summary", filename),
     reelUrl,
+    coverImage: hasCover ? data.cover_image : undefined,
+    coverAlt: hasCover ? data.cover_alt : undefined,
+    coverWidth: hasCover ? data.cover_width : undefined,
+    coverHeight: hasCover ? data.cover_height : undefined,
     tags: data.tags.map((tag: string) => tag.trim()),
     status: data.status,
     body: content.trim(),
