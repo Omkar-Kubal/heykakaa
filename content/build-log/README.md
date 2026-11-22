@@ -7,6 +7,9 @@ publication date and approved article text; draft entries never appear on the
 public index, sitemap, or article routes. The introduction uses
 `/build-log/introduction`; numbered days use `/build-log/day-N`.
 
+When a published entry's title, summary, or cover image changes, regenerate
+the landscape share images with `npm run generate:seo-images` before deploying.
+
 Introduction frontmatter:
 
 ```yaml

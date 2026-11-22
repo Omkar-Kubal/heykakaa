@@ -1,7 +1,7 @@
 ---
 day: 4
 series: "Documenting the process"
-title: "Choosing the Global Kit"
+title: "Choosing Colors, Type, and Icons for a Flutter App"
 date: 2026-11-16
 summary: >-
   I chose the shared visual direction for App #11: monochrome colors, Google Sans typography, and a consistent Hugeicons style for the Flutter interface.

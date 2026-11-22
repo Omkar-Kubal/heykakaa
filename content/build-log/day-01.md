@@ -1,10 +1,10 @@
 ---
 day: 1
 series: "Documenting the process"
-title: "Defining App #11"
+title: "Starting an Android Screen Time App: Defining the Problem"
 date: 2026-11-13
 summary: >-
-  I’m starting my 11th Android app: a minimal way to notice time spent on short-form video without turning that awareness into guilt.
+  I’m exploring an Android app idea for noticing short-form video habits without guilt, and listing the questions to research before deciding what to build.
 reel_url: "https://www.instagram.com/p/DfuWSB5qeSn/"
 cover_image: "/assets/day-01-cover.webp"
 cover_alt: "Day 01 Building App #11 cover, with @hey.kakaa speaking to camera."

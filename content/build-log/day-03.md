@@ -1,10 +1,10 @@
 ---
 day: 3
 series: "Documenting the process"
-title: "From App Idea to PRD and SRS"
+title: "Turning an Android App Idea into a PRD and SRS"
 date: 2026-11-15
 summary: >-
-  I narrated my app idea to an AI assistant and turned it into working PRD and SRS drafts that I can review and refine as I build.
+  I used a narrated Android app idea to draft a PRD and SRS, then kept the proposals and open questions visible for review.
 reel_url: "https://www.instagram.com/p/Dfzn24bqNIg/"
 cover_image: "/assets/day-03-cover.webp"
 cover_alt: "Day 03 PRD plus SRS cover, with @hey.kakaa speaking to camera."
@@ -40,129 +40,15 @@ ChatGPT or Claude can help structure a narrated idea, but the output is not evid
 ## Docs / assets
 
 - [Watch the Day 03 Instagram video](https://www.instagram.com/p/Dfzn24bqNIg/). Its “PRD + SRS” cover appears at the top of this page.
-- [Read Day 01](https://www.heykakaa.com/build-log/day-1) for the separate product research prompt and **suggested** research toolkit. The tools below are for drafting requirements from an idea; they are not a claim that product research has been completed.
+- [Read Day 01](/build-log/day-1) for the product research prompt and suggested toolkit. That resource is separate from drafting requirements; product research has not been presented as completed here.
 
-### Generic PRD template
-
-Copy this outline and replace the bracketed guidance with your own facts. Keep unanswered questions visible instead of filling them with guesses.
-
-```text
-# Product Requirements Document (PRD)
-Status and date: [Draft or approved; last updated date]
-Working product name: [Name, if chosen]
-
-1. Product overview
-   [One or two sentences describing the idea and its purpose.]
-2. Problem and evidence
-   [What problem exists? What observation, interview, or source
-    supports it? Mark an untested belief as an assumption.]
-3. Users and jobs
-   [Who is this for? What are they trying to accomplish?
-    A job is the outcome they want, not a screen or feature.]
-4. Goals and non-goals
-   [Goals are intended outcomes. Non-goals state what this
-    version deliberately will not attempt.]
-5. Scope and priorities
-   [What is in the first usable release (MVP)? What comes later?
-    Define P0 as essential, P1 as important, P2 as later if used.]
-6. User journey
-   [The steps a person takes from first opening the product
-    to getting the intended result.]
-7. Feature requirements
-   [For each feature: ID, user need, behavior, priority, and
-    acceptance criteria. Acceptance criteria are observable
-    conditions that show the feature works.]
-8. Success measures
-   [What signals will tell you whether the product helps?
-    Label targets as targets, not measured results.]
-9. Risks, assumptions, and open decisions
-   [Risk: what could go wrong. Assumption: what is unproven.
-    Open decision: a choice that has not yet been made.]
-```
-
-### PRD prompt for a narrated idea
-
-```text
-I am going to narrate an app idea in rough notes. Capture my words
-until I say "done". Then draft a PRD using the template above.
-
-Preserve what I actually said. Separate confirmed decisions, my
-assumptions, and your proposals. Do not invent user interviews,
-market data, features, or evidence. If I have not given enough
-information for a section, write "TBD" and explain what is missing.
-
-Give each proposed feature an ID, priority, user need, and observable
-acceptance criteria. Finish with the five questions that would most
-improve this draft. Do not present the draft as validated research.
-```
-
-### Generic SRS template
-
-The SRS starts from the current PRD, even if that PRD is still a draft. Its requirements should be specific enough that someone can test them.
-
-```text
-# Software Requirements Specification (SRS)
-Status and date: [Draft or approved; last updated date]
-Companion PRD: [Title and version of the product draft]
-
-1. Purpose, scope, and terms
-   [What system is specified? Define words that could be read
-    differently by a developer, tester, or reader.]
-2. System context and platform
-   [Devices, operating systems, users, and external systems.
-    State what is outside this system's scope.]
-3. Proposed architecture and tech stack
-   [Major parts of the system and their responsibilities.
-    Name languages, frameworks, and storage only as choices
-    to confirm until feasibility and tradeoffs are checked.]
-4. Functional requirements
-   [Give each behavior an ID such as FR-001. Use "shall" for
-    required behavior. Include inputs, result, failure case,
-    and a verification method for each requirement.]
-5. Data and privacy
-   [What data is collected or created? Where is it stored?
-    Who can access it, how long is it kept, and how is it deleted?]
-6. Interfaces and dependencies
-   [How system parts exchange information; external APIs,
-    platform permissions, services, and libraries relied on.]
-7. Nonfunctional requirements
-   [Measurable qualities such as speed, reliability, security,
-    accessibility, battery use, and offline behavior.]
-8. Verification and release gates
-   [Tests or reviews that prove requirements are met. A release
-    gate is a condition that must pass before shipping.]
-9. Traceability and open technical decisions
-   [Link each technical requirement to its PRD need. Record
-    unresolved technical choices and the evidence needed.]
-```
-
-**A functional requirement** says what the system must do. **A nonfunctional requirement** says how well it must do it or what constraint it must meet. **Traceability** lets you follow a technical requirement back to the product reason for it. A **verification method** is the test, review, or measurement that would show the requirement is satisfied.
-
-### SRS prompt from the current PRD
-
-```text
-Using the PRD draft below and any additional technical preferences I
-narrate, create a working SRS using the template above. Do not treat
-an unresolved PRD choice as approved.
-
-Give each functional requirement an ID, precise required behavior,
-failure or permission case where relevant, and a verification method.
-Cover proposed architecture and stack, data, interfaces, privacy,
-performance, accessibility, reliability, and release checks. Map
-requirements back to PRD goals or features.
-
-Label technical choices as proposed until tested. Flag platform
-capabilities, permissions, APIs, and policy assumptions that need
-current official documentation or real-device validation. Do not
-invent implementation facts. End with open technical questions.
-
-[Paste current PRD and narrated technical notes here.]
-```
-
-**Drafting tool:** ChatGPT or Claude can organize the narration and help find missing questions. The product research tools linked from Day 01 are suggestions for checking claims, not tools I’m claiming to have used for these drafts.
+- **Reusable PRD and SRS outlines:** [Read the practical guide to writing a PRD and SRS for an Android app](/guides/app-prd-srs). It includes the editable outlines and prompts, keeping this day focused on the build story.
+- **Drafting tools:** ChatGPT or Claude can help organize narration and find missing questions. Generated documents remain drafts to review, not evidence of research or platform behavior.
 
 ## Learnings / blockers + Tomorrow
 
 Writing the idea as requirements makes gaps easier to see. A sentence that sounds clear in a video may need a user, a boundary, and a test before it is useful to build from. The PRD and SRS give me a starting blueprint, while the open questions tell me what to verify next.
 
 Tomorrow I’ll work through the app’s visual direction: the color scheme, iconography, and typography.
+
+For the complete process and reusable prompts, continue with [How to Write a PRD and SRS for an Android App](/guides/app-prd-srs).

@@ -1,10 +1,10 @@
 ---
 kind: introduction
 series: "Documenting the process"
-title: "Introduction: Not Day 1 Yet"
+title: "Building an Android Screen Time App in Public"
 date: 2026-11-13
 summary: >-
-  I’m working on a free, private mobile app that helps people understand their short-form video habits. It counts viewing events across selected feeds, shows a daily total and history, and uses an expressive character to reflect progress. There’s also an optional floating counter while you scroll. The goal is to help people improve against their own past habits.
+  I’m documenting an Android app idea focused on helping people notice their short-form video habits without guilt.
 reel_url: "https://www.instagram.com/reel/DfsObcvKsK8/"
 cover_image: "/assets/instagram-intro-reel-cover.png"
 cover_alt: "Instagram introduction Reel cover: @hey.kakaa and the words Not Day 1 Yet."

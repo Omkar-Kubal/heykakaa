@@ -10,6 +10,7 @@ import { getArticleSectionId, getArticleSections, type ArticleSection } from "@/
 import { SiteHeader } from "../../components/site-header";
 import { SiteFooter } from "../../components/site-footer";
 import { ArticleMotion } from "./article-motion";
+import { JsonLd } from "../../components/json-ld";
 
 type Props = { params: Promise<{ daySlug: string }> };
 
@@ -44,17 +45,22 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
   if (!entry) notFound();
   const path = `/build-log/${entry.slug}`;
   const title = entry.kind === "introduction" ? entry.title : `${entryLabel(entry)}: ${entry.title}`;
+  const image = `/assets/build-log-${entry.slug}-og.webp`;
   return {
     title: `${title} | HeyKakaa`,
     description: entry.summary,
     alternates: { canonical: path },
+    authors: [{ name: "Kaka", url: "https://www.heykakaa.com/" }],
     openGraph: {
       type: "article",
       title,
       description: entry.summary,
       url: path,
-      images: [`${path}/opengraph-image`],
+      publishedTime: `${entry.date}T00:00:00+05:30`,
+      authors: ["https://www.heykakaa.com/"],
+      images: [{ url: image, width: 1200, height: 675, alt: title }],
     },
+    twitter: { card: "summary_large_image", images: [image] },
   };
 }
 
@@ -71,6 +77,22 @@ export default async function DayPage({ params }: Props) {
     .format(new Date(`${entry.date}T00:00:00Z`));
   const sections = getArticleSections(entry.body);
   const markdownComponents = createMarkdownComponents(sections);
+  const articleImage = `/assets/build-log-${entry.slug}-og.webp`;
+  const articleTitle = entry.kind === "introduction" ? entry.title : `${entryLabel(entry)}: ${entry.title}`;
+  const articleStructuredData = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    headline: articleTitle,
+    description: entry.summary,
+    image: [`https://www.heykakaa.com${articleImage}`],
+    datePublished: `${entry.date}T00:00:00+05:30`,
+    author: {
+      "@type": "Person",
+      name: "Kaka",
+      url: "https://www.heykakaa.com/",
+    },
+    mainEntityOfPage: `https://www.heykakaa.com/build-log/${entry.slug}`,
+  };
 
   return (
     <div className="relative min-h-svh">
@@ -84,7 +106,7 @@ export default async function DayPage({ params }: Props) {
               <p className="hk-eyebrow">{entry.series ?? "App #11"} / {entryLabel(entry)}</p>
               <h1>{entry.title}</h1>
               <p className="hk-article-summary">{entry.summary}</p>
-              <time dateTime={entry.date}>{dateLabel}</time>
+              <p className="hk-guide-byline">By Kaka · <time dateTime={entry.date}>{dateLabel}</time></p>
             </div>
             {entry.coverImage && entry.coverAlt && entry.coverWidth && entry.coverHeight && (
               <figure className="hk-article-cover">
@@ -126,6 +148,7 @@ export default async function DayPage({ params }: Props) {
           {older ? <Link href={`/build-log/${older.slug}`}><ArrowLeft aria-hidden="true" size={17} /> {entryLabel(older)}</Link> : <span />}
           {newer ? <Link href={`/build-log/${newer.slug}`}>{entryLabel(newer)} <ArrowRight aria-hidden="true" size={17} /></Link> : <span />}
         </nav>
+        <JsonLd data={articleStructuredData} />
       </main>
       <SiteFooter />
     </div>

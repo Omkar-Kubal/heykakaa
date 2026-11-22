@@ -8,6 +8,7 @@ export const metadata: Metadata = {
   title: "Roadmap | HeyKakaa",
   description: "The App #11 roadmap is coming soon. Follow the day-by-day Build Log in the meantime.",
   alternates: { canonical: "/roadmap" },
+  robots: { index: false, follow: false },
 };
 
 export default function RoadmapPage() {

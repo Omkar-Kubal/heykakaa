@@ -1,10 +1,10 @@
 ---
 day: 2
 series: "Documenting the process"
-title: "Launching HeyKakaa.com"
+title: "Building a Website for an App Build Log"
 date: 2026-11-14
 summary: >-
-  I bought a domain and launched a website so each short video in this series can lead to a fuller account of the work.
+  I launched HeyKakaa.com as a home for the App #11 build log, where each Android app update can link to a fuller account of the work.
 reel_url: "https://www.instagram.com/p/DfxCyAAqwpV/"
 cover_image: "/assets/day-02-cover.webp"
 cover_alt: "Day 02 cover reading An Idea on Paper, with @hey.kakaa speaking to camera."
@@ -40,4 +40,4 @@ I want the documentation to be free to read. If you’re following the app or bu
 
 Getting the site online gives these updates one place to live. I can keep the videos short without losing the details that matter to the people who want to follow the entire process.
 
-Next, I’ll show how I take an app idea and turn it into a written guide.
+Next, I’ll show how I turn an app idea into working product and software requirements drafts.

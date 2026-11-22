@@ -229,7 +229,7 @@ test("the introduction remains identifiable without assuming it is the only publ
   assert.equal(introductionEntry.kind, "introduction");
   assert.equal(introductionEntry.day, undefined);
   assert.equal(introductionEntry.series, "Documenting the process");
-  assert.equal(introductionEntry.title, "Introduction: Not Day 1 Yet");
+  assert.equal(introductionEntry.title, "Building an Android Screen Time App in Public");
   assert.equal(introductionEntry.date, "2026-11-13");
   assert.equal(introductionEntry.reelUrl, "https://www.instagram.com/reel/DfsObcvKsK8/");
   assert.deepEqual(introductionEntry.tags, []);

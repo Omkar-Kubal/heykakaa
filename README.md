@@ -26,8 +26,9 @@ NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID
 ```
 
 The application logs one `page_view` for each page load or App Router path
-change. It omits query strings and does not log email addresses. The public
-site footer discloses visit measurement.
+change and a `google_play_click` for app listing clicks. Page and click events
+omit query strings and do not log email addresses. The public site footer
+discloses visit measurement.
 
 ## Build Log publishing
 
@@ -44,6 +45,15 @@ route. `/day-1` and the old `/build-log/day-1` address redirect to
 The project retains the App Router folder structure from `aushin19/appylab`. The visual reference is the AppyLab site shown in the supplied screenshots: its compiled stylesheet is kept in `app/globals.css` with local Figtree font URLs. HeyKakaa-specific layout and responsive rules are in `app/heykakaa.css`.
 
 The SyncSpend and SyncTasks gallery banners came from the corresponding live AppyLab Projects cards. The app icons and HeyKakaa avatar are kept in `public/assets/`.
+
+## Search visibility
+
+Search and crawl metadata is defined in the App Router pages. Submit the
+published sitemap in Google Search Console and follow
+[`docs/seo/search-console.md`](docs/seo/search-console.md) to check indexing
+and record query and page performance. The landscape article, guide, and app
+share images are generated from the supplied local covers and app assets with
+`npm run generate:seo-images`.
 
 ## Later work
 

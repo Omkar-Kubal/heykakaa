@@ -21,7 +21,7 @@ export default function ProjectsPage() {
             <p className="hk-eyebrow">The HeyKakaa collection / Android</p>
             <h1 id="projects-title">Built here.<br />Out in the world.</h1>
           </div>
-          <p>Two Android apps for everyday spending and planning. Explore what’s available on Google Play.</p>
+          <p>Explore SyncSpend, an Android expense tracker, and SyncTasks, a task planner for Android. See what each app does before you visit Google Play.</p>
         </section>
         <AppGallery />
         <section className="hk-bottom-cta hk-project-cta" aria-labelledby="project-enquiry">

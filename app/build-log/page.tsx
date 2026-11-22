@@ -9,6 +9,14 @@ export const metadata: Metadata = {
   title: "Build Log | HeyKakaa",
   description: "Follow App #11 as I build a new Android app, one day at a time.",
   alternates: { canonical: "/build-log" },
+  openGraph: {
+    type: "website",
+    title: "App #11 Android Build Log | HeyKakaa",
+    description: "Follow the daily story of researching and building an Android app, from idea through design and development.",
+    url: "/build-log",
+    images: [{ url: "/assets/build-log-introduction-og.webp", width: 1200, height: 675, alt: "Kaka documenting an Android app build" }],
+  },
+  twitter: { card: "summary_large_image", images: ["/assets/build-log-introduction-og.webp"] },
 };
 
 export default function BuildLogPage() {
@@ -23,6 +31,10 @@ export default function BuildLogPage() {
           <p className="hk-log-eyebrow">Building in public / Android</p>
           <h1>Build Log</h1>
           <p>I’m building App #11 in public — an Android app to make time spent on Reels and Shorts easier to notice.</p>
+          <p className="hk-log-featured-guide">
+            <strong>Want a repeatable planning process?</strong>{" "}
+            <Link href="/guides/app-prd-srs">Read my PRD and SRS guide <ArrowUpRight aria-hidden="true" size={16} /></Link>
+          </p>
         </div>
 
         <ol className="hk-build-timeline" aria-label="Build Log entries">
