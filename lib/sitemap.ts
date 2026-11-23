@@ -11,6 +11,7 @@ export function createSitemap(
     "/projects",
     "/projects/syncspend",
     "/projects/synctasks",
+    "/projects/syncfocus",
     "/build-log",
     "/guides/app-prd-srs",
     "/contact",

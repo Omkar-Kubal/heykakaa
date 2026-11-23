@@ -24,9 +24,9 @@ export function AndroidAppDetail({ app }: { app: AndroidApp }) {
           <Image
             className="hk-app-banner"
             src={app.shareImage}
-            alt={`${app.name} Android app icon and interface`}
-            width={1200}
-            height={675}
+            alt={app.shareImageAlt}
+            width={app.shareImageWidth}
+            height={app.shareImageHeight}
             priority
             sizes="(max-width: 767px) 100vw, 50vw"
           />

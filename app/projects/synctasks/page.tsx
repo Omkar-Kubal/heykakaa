@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: "SyncTasks To-Do List and Planner for Android",
     description: app.shareDescription,
     url: "/projects/synctasks",
-    images: [{ url: image, width: 1200, height: 675, alt: app.shareTitle }],
+    images: [{ url: image, width: app.shareImageWidth, height: app.shareImageHeight, alt: app.shareImageAlt }],
   },
   twitter: { card: "summary_large_image", images: [image] },
 };

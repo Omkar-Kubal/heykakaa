@@ -15,6 +15,7 @@ export function ArticleMotion() {
     ));
     const prefersReducedMotion = window.matchMedia?.("(prefers-reduced-motion: reduce)").matches ?? false;
     let observer: IntersectionObserver | undefined;
+    let tocObserver: IntersectionObserver | undefined;
 
     if (!prefersReducedMotion && "IntersectionObserver" in window) {
       observer = new IntersectionObserver((entries) => {
@@ -23,7 +24,7 @@ export function ArticleMotion() {
           entry.target.classList.add("is-visible");
           observer?.unobserve(entry.target);
         }
-      }, { threshold: 0.12, rootMargin: "0px 0px -6% 0px" });
+      }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
 
       for (const target of targets) {
         target.classList.add("hk-article-reveal");
@@ -32,6 +33,22 @@ export function ArticleMotion() {
         } else {
           observer.observe(target);
         }
+      }
+
+      const headings = Array.from(article.querySelectorAll<HTMLElement>(".hk-article-body h2[id]"));
+      if (headings.length) {
+        tocObserver = new IntersectionObserver((entries) => {
+          const activeHeading = entries
+            .filter((entry) => entry.isIntersecting)
+            .sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top)[0];
+          if (!activeHeading) return;
+          const activeId = (activeHeading.target as HTMLElement).id;
+          document.querySelectorAll<HTMLAnchorElement>(".hk-article-toc a").forEach((link) => {
+            if (link.hash === `#${activeId}`) link.setAttribute("aria-current", "location");
+            else link.removeAttribute("aria-current");
+          });
+        }, { threshold: 0, rootMargin: "-120px 0px -70% 0px" });
+        headings.forEach((heading) => tocObserver?.observe(heading));
       }
     }
 
@@ -55,6 +72,8 @@ export function ArticleMotion() {
       window.removeEventListener("resize", updateProgress);
       if (frame) window.cancelAnimationFrame(frame);
       observer?.disconnect();
+      tocObserver?.disconnect();
+      document.querySelectorAll(".hk-article-toc a[aria-current='location']").forEach((link) => link.removeAttribute("aria-current"));
       for (const target of targets) target.classList.remove("hk-article-reveal", "is-visible");
     };
   }, []);

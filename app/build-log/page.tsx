@@ -4,15 +4,16 @@ import { ArrowUpRight } from "lucide-react";
 import { getNextDayNumber, listTimelineEntries } from "@/lib/build-log";
 import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
+import { BuildLogEntries } from "./build-log-entries";
 
 export const metadata: Metadata = {
-  title: "Build Log | HeyKakaa",
-  description: "Follow App #11 as I build a new Android app, one day at a time.",
+  title: "Rooko Build Log | HeyKakaa",
+  description: "Follow App #11 as I build Rooko, an Android app that makes time on Reels and Shorts easier to notice.",
   alternates: { canonical: "/build-log" },
   openGraph: {
     type: "website",
-    title: "App #11 Android Build Log | HeyKakaa",
-    description: "Follow the daily story of researching and building an Android app, from idea through design and development.",
+    title: "Rooko Android Build Log | HeyKakaa",
+    description: "Follow the daily story of researching and building Rooko, from idea through design and development.",
     url: "/build-log",
     images: [{ url: "/assets/build-log-introduction-og.webp", width: 1200, height: 675, alt: "Kaka documenting an Android app build" }],
   },
@@ -29,37 +30,32 @@ export default function BuildLogPage() {
       <main className="hk-log-page" id="main-content">
         <div className="hk-log-intro">
           <p className="hk-log-eyebrow">Building in public / Android</p>
-          <h1>Build Log</h1>
-          <p>I’m building App #11 in public — an Android app to make time spent on Reels and Shorts easier to notice.</p>
+          <h1>Rooko Build Log</h1>
+          <p>App #11: an Android app that makes time on Reels and Shorts easier to notice. One day at a time.</p>
+          <div className="hk-build-intro-actions">
+            <a className="hk-primary-button" href="https://www.instagram.com/hey.kakaa/" target="_blank" rel="noopener noreferrer">Follow on Instagram <ArrowUpRight aria-hidden="true" size={16} /></a>
+          </div>
           <p className="hk-log-featured-guide">
             <strong>Want a repeatable planning process?</strong>{" "}
             <Link href="/guides/app-prd-srs">Read my PRD and SRS guide <ArrowUpRight aria-hidden="true" size={16} /></Link>
           </p>
         </div>
 
-        <ol className="hk-build-timeline" aria-label="Build Log entries">
-          {entries.map((entry) => (
-            <li className="hk-build-day" key={entry.slug}>
-              <span className="hk-build-dot" aria-hidden="true" />
-              <div>
-                <p className="hk-build-day-number">{entry.kind === "introduction" ? "Introduction" : `Day ${String(entry.day).padStart(2, "0")}`}</p>
-                <h2><Link href={`/build-log/${entry.slug}`}>{entry.title}</Link></h2>
-                <p className="hk-build-summary">{entry.summary}</p>
-                <div className="hk-build-links">
-                  <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Instagram Reel <ArrowUpRight aria-hidden="true" size={17} /></a>
-                  <Link className="hk-primary-button" href={`/build-log/${entry.slug}`}>Read {entry.kind === "introduction" ? "introduction" : `Day ${String(entry.day).padStart(2, "0")}`} <ArrowUpRight aria-hidden="true" size={17} /></Link>
-                </div>
-              </div>
-            </li>
-          ))}
-          <li className="hk-build-day hk-build-day-upcoming">
-            <span className="hk-build-dot" aria-hidden="true" />
-            <div>
-              <p className="hk-build-day-number">Day {String(nextDay).padStart(2, "0")}</p>
-              <p className="hk-build-coming">Coming next</p>
-            </div>
-          </li>
-        </ol>
+        <div className="hk-build-layout">
+          <BuildLogEntries entries={entries} nextDay={nextDay} />
+          <aside className="hk-build-rooko-card" aria-labelledby="build-rooko-title">
+            <p className="hk-eyebrow">About Rooko</p>
+            <h2 id="build-rooko-title">Awareness without guilt.</h2>
+            <p>Follow the work as App #11 moves from the problem to its first release.</p>
+            <ol className="hk-rooko-phases" aria-label="Rooko build phases">
+              <li className="is-done"><span aria-hidden="true">✓</span> Problem</li>
+              <li className="is-done"><span aria-hidden="true">✓</span> PRD &amp; SRS</li>
+              <li className="is-done"><span aria-hidden="true">✓</span> Design kit</li>
+              <li className="is-current"><span className="hk-rooko-phase-dot" aria-hidden="true" /> Screens</li>
+            </ol>
+            <Link href="/roadmap" className="hk-outline-button">See the full roadmap <ArrowUpRight aria-hidden="true" size={15} /></Link>
+          </aside>
+        </div>
       </main>
       <SiteFooter />
     </div>

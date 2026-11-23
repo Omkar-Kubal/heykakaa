@@ -37,7 +37,7 @@ export function AppGallery() {
         {filtered.map((app) => (
           <article className="hk-card" key={app.name}>
               <PlayStoreLink appName={app.name} className="hk-card-banner" href={app.playUrl} ariaLabel={`Get ${app.name} on Google Play`}>
-                <Image src={app.shareImage} alt={`${app.name} app icon and interface`} width={1200} height={675} />
+                <Image src={app.shareImage} alt={app.shareImageAlt} width={app.shareImageWidth} height={app.shareImageHeight} />
               </PlayStoreLink>
             <div className="hk-card-title-row">
               <Image className="hk-card-icon" src={app.icon} alt="" width={56} height={56} />

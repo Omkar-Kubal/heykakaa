@@ -8,18 +8,21 @@ export function PlayStoreLink({
   href,
   className,
   ariaLabel,
+  tabIndex,
   children,
 }: {
   appName: string;
   href: string;
   className?: string;
   ariaLabel?: string;
+  tabIndex?: number;
   children: ReactNode;
 }) {
   return (
     <a
       className={className}
       aria-label={ariaLabel}
+      tabIndex={tabIndex}
       href={href}
       target="_blank"
       rel="noopener noreferrer"

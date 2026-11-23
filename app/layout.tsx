@@ -8,7 +8,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.heykakaa.com"),
   title: "HeyKakaa | Android apps by Kaka",
   description:
-    "Meet Kaka, the Android app developer behind SyncSpend and SyncTasks. Explore the apps and follow the App #11 build log.",
+    "Meet Kaka, the independent Android app developer behind SyncSpend and SyncTasks. Explore the apps and follow the Rooko build log.",
   applicationName: "HeyKakaa",
   creator: "@hey.kakaa",
   robots: {

@@ -11,6 +11,7 @@ import { SiteHeader } from "../../components/site-header";
 import { SiteFooter } from "../../components/site-footer";
 import { ArticleMotion } from "./article-motion";
 import { JsonLd } from "../../components/json-ld";
+import { CopyCodeBlock } from "../../components/copy-code-block";
 
 type Props = { params: Promise<{ daySlug: string }> };
 
@@ -26,6 +27,7 @@ function createMarkdownComponents(sections: ArticleSection[]): Components {
       headingIndex += 1;
       return <h2 id={id}>{children}</h2>;
     },
+    pre: ({ children }) => <CopyCodeBlock>{children}</CopyCodeBlock>,
   };
 }
 
@@ -71,6 +73,7 @@ export default async function DayPage({ params }: Props) {
 
   const entries = listPublishedEntries();
   const index = entries.findIndex((item) => item.slug === entry.slug);
+  const relatedEntries = entries.filter((item) => item.slug !== entry.slug).slice(0, 3);
   const newer = entries[index - 1];
   const older = entries[index + 1];
   const dateLabel = new Intl.DateTimeFormat("en", { day: "numeric", month: "long", year: "numeric", timeZone: "UTC" })
@@ -144,6 +147,21 @@ export default async function DayPage({ params }: Props) {
           <a href={entry.reelUrl} target="_blank" rel="noopener noreferrer">Watch the {entryLabel(entry)} reel <ArrowUpRight aria-hidden="true" size={17} /></a>
           <a href="https://www.instagram.com/hey.kakaa/" target="_blank" rel="noopener noreferrer">Follow @hey.kakaa <ArrowUpRight aria-hidden="true" size={17} /></a>
         </div>
+        {relatedEntries.length > 0 && (
+          <section className="hk-article-related" aria-labelledby="related-entries-title">
+            <p className="hk-eyebrow">Keep reading</p>
+            <h2 id="related-entries-title">More from the Rooko build.</h2>
+            <div className="hk-article-related-grid">
+              {relatedEntries.map((related) => (
+                <Link href={`/build-log/${related.slug}`} key={related.slug}>
+                  <span>{entryLabel(related)}</span>
+                  <strong>{related.title}</strong>
+                  <ArrowRight aria-hidden="true" size={16} />
+                </Link>
+              ))}
+            </div>
+          </section>
+        )}
         <nav className="hk-article-nav" aria-label="Build Log days">
           {older ? <Link href={`/build-log/${older.slug}`}><ArrowLeft aria-hidden="true" size={17} /> {entryLabel(older)}</Link> : <span />}
           {newer ? <Link href={`/build-log/${newer.slug}`}>{entryLabel(newer)} <ArrowRight aria-hidden="true" size={17} /></Link> : <span />}
