@@ -16,14 +16,24 @@ function getMotionVariant(pathname: string) {
 
 const revealTargets = [
   "main > section",
-  "main > .hk-log-intro",
-  "main > .hk-build-timeline > li",
-  "main > .hk-contact-intro",
-  "main > .hk-contact-grid",
-  "main.hk-roadmap-page > *",
-  "main > article > .hk-article-header",
-  "main > article > .hk-article-end",
-  "main > article > .hk-article-nav",
+  ".hk-home-trust-strip > .hk-home-trust-item",
+  ".hk-home-app-grid > .hk-home-app-card",
+  ".hk-timeline > li",
+  ".hk-project-rows > .hk-project-row, .hk-project-rows > .hk-next-project",
+  ".hk-log-page > .hk-log-intro",
+  ".hk-build-layout",
+  ".hk-build-timeline",
+  ".hk-roadmap-page > .hk-roadmap-intro",
+  ".hk-roadmap-page > .hk-roadmap-progress",
+  ".hk-roadmap-page > .hk-roadmap-columns",
+  ".hk-contact-page .hk-contact-intro",
+  ".hk-contact-page .hk-contact-grid",
+  ".hk-article-page article > .hk-article-header",
+  ".hk-article-page > .hk-article-end",
+  ".hk-article-page > .hk-article-related",
+  ".hk-article-page > .hk-article-nav",
+  ".hk-build-timeline > .hk-build-day",
+  ".hk-roadmap-column > .hk-roadmap-card",
 ].join(", ");
 
 export function SiteMotion() {
@@ -52,6 +62,36 @@ export function SiteMotion() {
 
     return () => window.clearTimeout(arrivalTimer);
   }, [pathname, variant]);
+
+  useEffect(() => {
+    let frame = 0;
+    const updateHeader = () => {
+      frame = 0;
+      const isScrolled = window.scrollY > 80;
+      document.querySelectorAll<HTMLElement>(".hk-header").forEach((header) => {
+        header.classList.toggle("is-scrolled", isScrolled);
+      });
+    };
+    const onScroll = () => {
+      if (frame) return;
+      frame = window.requestAnimationFrame(updateHeader);
+    };
+
+    updateHeader();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      if (frame) window.cancelAnimationFrame(frame);
+    };
+  }, [pathname]);
+
+  useEffect(() => {
+    const root = document.documentElement;
+    const updateVisibility = () => root.classList.toggle("hk-document-hidden", document.hidden);
+    updateVisibility();
+    document.addEventListener("visibilitychange", updateVisibility);
+    return () => document.removeEventListener("visibilitychange", updateVisibility);
+  }, []);
 
   useEffect(() => {
     const startTransition = () => {
@@ -109,17 +149,22 @@ export function SiteMotion() {
         entry.target.classList.add("is-visible");
         observer.unobserve(entry.target);
       }
-    }, { threshold: 0.12, rootMargin: "0px 0px -5% 0px" });
+    }, { threshold: 0.15, rootMargin: "0px 0px -5% 0px" });
 
     for (const element of elements) {
       if (element.getBoundingClientRect().top < window.innerHeight * 0.9) continue;
+      const siblingIndex = Array.from(element.parentElement?.children ?? []).indexOf(element);
+      element.style.setProperty("--hk-reveal-delay", `${Math.max(0, siblingIndex) * 100}ms`);
       element.classList.add("hk-motion-reveal");
       observer.observe(element);
     }
 
     return () => {
       observer.disconnect();
-      for (const element of elements) element.classList.remove("hk-motion-reveal", "is-visible");
+      for (const element of elements) {
+        element.classList.remove("hk-motion-reveal", "is-visible");
+        element.style.removeProperty("--hk-reveal-delay");
+      }
     };
   }, [pathname]);
 
