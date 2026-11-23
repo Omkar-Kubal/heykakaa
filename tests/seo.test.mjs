@@ -13,8 +13,10 @@ test("the sitemap includes app detail pages and the practical guide", () => {
   assert.equal(entries.every((entry) => entry.lastModified === undefined), true);
 });
 
-test("the unfinished roadmap page is excluded from the sitemap", () => {
+test("the indexable roadmap and site policy pages are included in the sitemap", () => {
   const urls = createSitemap().map((entry) => entry.url);
 
-  assert.ok(!urls.includes("https://www.heykakaa.com/roadmap"));
+  assert.ok(urls.includes("https://www.heykakaa.com/roadmap"));
+  assert.ok(urls.includes("https://www.heykakaa.com/privacy"));
+  assert.ok(urls.includes("https://www.heykakaa.com/terms"));
 });

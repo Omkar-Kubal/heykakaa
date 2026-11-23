@@ -23,7 +23,7 @@ export function HomeStickyCta() {
 
   return (
     <aside className={`hk-mobile-sticky-cta${visible ? " is-visible" : ""}`} aria-hidden={!visible} inert={!visible}>
-      <PlayStoreLink appName="SyncSpend" href={androidApps.syncspend.playUrl} className="hk-primary-button" tabIndex={visible ? 0 : -1}>
+      <PlayStoreLink appName="SyncSpend" placement="home_mobile_sticky_cta" href={androidApps.syncspend.playUrl} className="hk-primary-button" tabIndex={visible ? 0 : -1}>
         Get SyncSpend on Google Play <ArrowUpRight aria-hidden="true" size={16} />
       </PlayStoreLink>
     </aside>

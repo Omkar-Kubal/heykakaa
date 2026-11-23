@@ -12,7 +12,7 @@ const pages = [
   { href: "/contact", label: "Contact", page: "contact" },
 ] as const;
 
-export function SiteHeader({ active }: { active: Page }) {
+export function SiteHeader({ active }: { active?: Page }) {
   return (
     <header className="hk-header">
       <div className="hk-header-inner">

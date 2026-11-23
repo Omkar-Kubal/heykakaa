@@ -13,8 +13,11 @@ export function createSitemap(
     "/projects/synctasks",
     "/projects/syncfocus",
     "/build-log",
+    "/roadmap",
     "/guides/app-prd-srs",
     "/contact",
+    "/privacy",
+    "/terms",
   ];
 
   return [

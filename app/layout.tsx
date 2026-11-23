@@ -3,12 +3,13 @@ import "./globals.css";
 import "./heykakaa.css";
 import { FirebasePageViews } from "./components/firebase-page-views";
 import { SiteMotion } from "./components/site-motion";
+import { AnalyticsConsentNotice } from "./components/analytics-consent-notice";
 
 export const metadata: Metadata = {
   metadataBase: new URL("https://www.heykakaa.com"),
   title: "HeyKakaa | Android apps by Kaka",
   description:
-    "Meet Kaka, the independent Android app developer behind SyncSpend and SyncTasks. Explore the apps and follow the Rooko build log.",
+    "Meet Kaka, the independent Android app developer behind SyncSpend, SyncTasks, and Sync Focus. Explore the apps and follow the Rooko build log.",
   applicationName: "HeyKakaa",
   creator: "@hey.kakaa",
   robots: {
@@ -28,6 +29,7 @@ export default function RootLayout({
       <body>
         <SiteMotion />
         <div className="hk-site-content">{children}<FirebasePageViews /></div>
+        <AnalyticsConsentNotice />
       </body>
     </html>
   );

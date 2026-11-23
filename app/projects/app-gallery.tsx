@@ -36,7 +36,7 @@ export function AppGallery() {
         {filtered.length === 0 && <p className="hk-empty">No apps match “{query}”.</p>}
         {filtered.map((app) => (
           <article className="hk-card" key={app.name}>
-              <PlayStoreLink appName={app.name} className="hk-card-banner" href={app.playUrl} ariaLabel={`Get ${app.name} on Google Play`}>
+              <PlayStoreLink appName={app.name} placement="projects_gallery_banner" className="hk-card-banner" href={app.playUrl} ariaLabel={`Get ${app.name} on Google Play`}>
                 <Image src={app.shareImage} alt={app.shareImageAlt} width={app.shareImageWidth} height={app.shareImageHeight} />
               </PlayStoreLink>
             <div className="hk-card-title-row">
@@ -49,7 +49,7 @@ export function AppGallery() {
             <p className="hk-card-description">{app.description}</p>
             <div className="hk-card-bottom">
               <span>Available on Google Play</span>
-              <PlayStoreLink appName={app.name} className="hk-small-button" href={app.playUrl}>
+              <PlayStoreLink appName={app.name} placement="projects_gallery_button" className="hk-small-button" href={app.playUrl}>
                 View app <ArrowUpRight aria-hidden="true" size={13} />
               </PlayStoreLink>
             </div>

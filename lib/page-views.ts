@@ -22,10 +22,11 @@ export function createPageViewTracker<TAnalytics>(
 
   return async (pathname) => {
     if (!pathname || pathname === lastTrackedPath) return;
-    lastTrackedPath = pathname;
     try {
       const analytics = await initialize();
-      if (analytics) logPageView(analytics, pathname);
+      if (!analytics || pathname === lastTrackedPath) return;
+      lastTrackedPath = pathname;
+      logPageView(analytics, pathname);
     } catch (error) {
       onError(error);
     }

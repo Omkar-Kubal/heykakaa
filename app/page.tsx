@@ -96,7 +96,7 @@ export default function Home() {
               </div>
               <p>{app.description}</p>
               <div className="hk-home-app-actions">
-                <PlayStoreLink appName={app.name} href={app.playUrl} className="hk-primary-button">
+                <PlayStoreLink appName={app.name} placement="home_app_card" href={app.playUrl} className="hk-primary-button">
                   Get {app.name}<ArrowUpRight aria-hidden="true" size={15} />
                 </PlayStoreLink>
                 <Link href={`/projects/${app.name.toLowerCase()}`}>Learn more <ArrowUpRight aria-hidden="true" size={14} /></Link>
@@ -116,7 +116,7 @@ export default function Home() {
             </div>
             <p>{androidApps.syncfocus.description}</p>
             <div className="hk-home-app-actions">
-              <PlayStoreLink appName="Sync Focus" href={androidApps.syncfocus.playUrl} className="hk-primary-button">Get Sync Focus <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+              <PlayStoreLink appName="Sync Focus" placement="home_app_card" href={androidApps.syncfocus.playUrl} className="hk-primary-button">Get Sync Focus <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
               <Link href="/projects/syncfocus">Learn more <ArrowUpRight aria-hidden="true" size={14} /></Link>
             </div>
           </article>
@@ -196,8 +196,8 @@ export default function Home() {
           <p>Pick an app for your day, or follow App #11 as it takes shape.</p>
         </div>
         <div className="hk-bottom-cta-actions">
-          <PlayStoreLink appName="SyncSpend" href={androidApps.syncspend.playUrl} className="hk-primary-button">Get SyncSpend <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
-          <PlayStoreLink appName="SyncTasks" href={androidApps.synctasks.playUrl} className="hk-outline-button">Get SyncTasks <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+          <PlayStoreLink appName="SyncSpend" placement="home_bottom_cta" href={androidApps.syncspend.playUrl} className="hk-primary-button">Get SyncSpend <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+          <PlayStoreLink appName="SyncTasks" placement="home_bottom_cta" href={androidApps.synctasks.playUrl} className="hk-outline-button">Get SyncTasks <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
         </div>
       </section>
       <HomeStickyCta />

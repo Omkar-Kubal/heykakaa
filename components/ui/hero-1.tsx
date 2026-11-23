@@ -38,7 +38,7 @@ export function Hero({
         {(ctaLabel || secondaryCtaLabel) && (
           <div className="hk-center-hero-actions">
             {ctaLabel && (ctaAppName ? (
-              <PlayStoreLink appName={ctaAppName} href={ctaHref} className="hk-primary-button hk-center-hero-button">
+              <PlayStoreLink appName={ctaAppName} placement="home_hero" href={ctaHref} className="hk-primary-button hk-center-hero-button">
                 {ctaLabel}<ArrowUpRight aria-hidden="true" size={18} />
               </PlayStoreLink>
             ) : (

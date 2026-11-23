@@ -39,7 +39,7 @@ export default function ProjectsPage() {
                   {(app.name === "SyncSpend" ? ["Monthly view", "Analytics", "Backups"] : ["Today", "Upcoming", "Lists"]).map((feature) => <li key={feature}>{feature}</li>)}
                 </ul>
                 <div className="hk-project-actions">
-                  <PlayStoreLink appName={app.name} className="hk-primary-button" href={app.playUrl}>Get on Google Play <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+                  <PlayStoreLink appName={app.name} placement="projects_app_row" className="hk-primary-button" href={app.playUrl}>Get on Google Play <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
                   <Link className="hk-outline-button" href={`/projects/${app.name.toLowerCase()}`}>Learn more <ArrowUpRight aria-hidden="true" size={15} /></Link>
                 </div>
               </div>
@@ -56,7 +56,7 @@ export default function ProjectsPage() {
               <p>{androidApps.syncfocus.description}</p>
               <ul className="hk-project-tags" aria-label="Sync Focus features"><li>Timer ring</li><li>Task planning</li><li>Progress</li></ul>
               <div className="hk-project-actions">
-                <PlayStoreLink appName="Sync Focus" className="hk-primary-button" href={androidApps.syncfocus.playUrl}>Get on Google Play <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+                <PlayStoreLink appName="Sync Focus" placement="projects_app_row" className="hk-primary-button" href={androidApps.syncfocus.playUrl}>Get on Google Play <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
                 <Link className="hk-outline-button" href="/projects/syncfocus">Learn more <ArrowUpRight aria-hidden="true" size={15} /></Link>
               </div>
             </div>

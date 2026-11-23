@@ -27,7 +27,22 @@ test("page views survive Strict Mode replay and route changes during initializat
   ]);
 });
 
-test("analytics event tracker records app and page for a Play Store click", async () => {
+test("a page view can be retried for the current route after consent is granted", async () => {
+  let consentGranted = false;
+  const events = [];
+  const trackPageView = createPageViewTracker(
+    async () => consentGranted ? { app: "test" } : null,
+    (_client, pathname) => events.push(pathname),
+  );
+
+  await trackPageView("/");
+  consentGranted = true;
+  await trackPageView("/");
+
+  assert.deepEqual(events, ["/"]);
+});
+
+test("analytics event tracker records app, placement, and page for a Play Store click", async () => {
   const analytics = { app: "test" };
   const events = [];
   const trackEvent = createAnalyticsEventTracker(
@@ -35,11 +50,15 @@ test("analytics event tracker records app and page for a Play Store click", asyn
     (client, name, parameters) => events.push({ client, name, parameters }),
   );
 
-  await trackEvent("google_play_click", { app_name: "SyncSpend", page_path: "/projects/syncspend" });
+  await trackEvent("play_click", {
+    app_name: "SyncSpend",
+    placement: "home_hero",
+    page_path: "/",
+  });
 
   assert.deepEqual(events, [{
     client: analytics,
-    name: "google_play_click",
-    parameters: { app_name: "SyncSpend", page_path: "/projects/syncspend" },
+    name: "play_click",
+    parameters: { app_name: "SyncSpend", placement: "home_hero", page_path: "/" },
   }]);
 });

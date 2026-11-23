@@ -1,10 +1,12 @@
 "use client";
 
 import type { ReactNode } from "react";
-import { trackGooglePlayClick } from "@/lib/firebase-analytics";
+import { trackPlayClick } from "@/lib/firebase-analytics";
+import { withPlayStoreAttribution } from "@/lib/android-apps";
 
 export function PlayStoreLink({
   appName,
+  placement,
   href,
   className,
   ariaLabel,
@@ -12,6 +14,7 @@ export function PlayStoreLink({
   children,
 }: {
   appName: string;
+  placement: string;
   href: string;
   className?: string;
   ariaLabel?: string;
@@ -23,10 +26,10 @@ export function PlayStoreLink({
       className={className}
       aria-label={ariaLabel}
       tabIndex={tabIndex}
-      href={href}
+      href={withPlayStoreAttribution(href, placement)}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => trackGooglePlayClick(appName, window.location.pathname)}
+      onClick={() => trackPlayClick(appName, placement, window.location.pathname)}
     >
       {children}
     </a>

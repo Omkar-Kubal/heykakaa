@@ -15,4 +15,4 @@ On setup day, save the date range, indexing state, and query/page performance to
 
 Review the Search results performance report after a few weeks and compare the same date ranges. Use queries with impressions but few clicks to improve page titles and descriptions. Use queries and pages with clicks to decide which useful guide to expand. Review the Discover report if Search Console shows enough Discover activity to provide one.
 
-Track visits to the two app pages and the guide in the existing analytics system as well. Compare those page visits and `google_play_click` events with the Search Console trends. Search Console setup, verification, URL inspection, and requests for indexing require an account with access to the property.
+Track visits to the app pages and guide in the existing analytics system as well. Compare those page visits and `play_click` events, including `app_name` and `placement`, with Search Console trends. Search Console setup, verification, URL inspection, and requests for indexing require an account with access to the property.

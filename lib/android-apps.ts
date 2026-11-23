@@ -1,6 +1,7 @@
 export const androidApps = {
   syncspend: {
     name: "SyncSpend",
+    applicationCategory: "FinanceApplication",
     shortDescription: "Daily expense log",
     heading: "An Android expense tracker for everyday spending",
     description:
@@ -46,6 +47,7 @@ export const androidApps = {
   },
   synctasks: {
     name: "SyncTasks",
+    applicationCategory: "ProductivityApplication",
     shortDescription: "Tasks & to-do planner",
     heading: "An Android task planner for clearer days",
     description:
@@ -96,6 +98,7 @@ export const androidApps = {
   },
   syncfocus: {
     name: "Sync Focus",
+    applicationCategory: "ProductivityApplication",
     shortDescription: "Focus timer & task planner",
     heading: "Make time for focus with Sync Focus",
     description:
@@ -138,3 +141,21 @@ export const androidApps = {
 
 export type AndroidAppSlug = keyof typeof androidApps;
 export type AndroidApp = (typeof androidApps)[AndroidAppSlug];
+
+export function withPlayStoreAttribution(href: string, placement: string): string {
+  try {
+    const url = new URL(href);
+    if (url.hostname !== "play.google.com") return href;
+
+    const referrer = new URLSearchParams({
+      utm_source: "heykakaa",
+      utm_medium: "website",
+      utm_campaign: "android_apps",
+      utm_content: placement,
+    });
+    url.searchParams.set("referrer", referrer.toString());
+    return url.toString();
+  } catch {
+    return href;
+  }
+}

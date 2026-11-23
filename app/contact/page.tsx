@@ -4,6 +4,7 @@ import { SiteHeader } from "../components/site-header";
 import { SiteFooter } from "../components/site-footer";
 import { PlayStoreLink } from "../components/play-store-link";
 import { androidApps } from "@/lib/android-apps";
+import { ContactForm } from "./contact-form";
 
 const instagramUrl = "https://www.instagram.com/hey.kakaa/";
 
@@ -23,6 +24,7 @@ export default function ContactPage() {
           <h1>Let’s talk.</h1>
           <p>Feedback on an app, a question, or an idea to build together.</p>
         </div>
+        <ContactForm />
         <div className="hk-contact-grid">
           <section aria-labelledby="contact-heading">
             <p className="hk-eyebrow">Instagram</p>
@@ -37,9 +39,9 @@ export default function ContactPage() {
             <h2 id="brief-heading">Rate or report on Google Play.</h2>
             <p>Reviews help other people find the apps.</p>
             <div className="hk-contact-app-links">
-              <PlayStoreLink appName="SyncSpend" href={androidApps.syncspend.playUrl}>Open SyncSpend <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
-              <PlayStoreLink appName="SyncTasks" href={androidApps.synctasks.playUrl}>Open SyncTasks <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
-              <PlayStoreLink appName="Sync Focus" href={androidApps.syncfocus.playUrl}>Open Sync Focus <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+              <PlayStoreLink appName="SyncSpend" placement="contact_app_links" href={androidApps.syncspend.playUrl}>Open SyncSpend <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+              <PlayStoreLink appName="SyncTasks" placement="contact_app_links" href={androidApps.synctasks.playUrl}>Open SyncTasks <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
+              <PlayStoreLink appName="Sync Focus" placement="contact_app_links" href={androidApps.syncfocus.playUrl}>Open Sync Focus <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
             </div>
           </section>
           <section className="hk-contact-guidance" aria-labelledby="brief-heading-guidance">
