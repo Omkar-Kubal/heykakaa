@@ -14,11 +14,14 @@ All five pages meet the LCP target of under 2.5 seconds, CLS under 0.1, and Acce
 
 ## Descriptive app link fix — 24 November 2026
 
-After descriptive link text was deployed in commit `2831f04`, Home and Projects were each audited three times with Lighthouse CLI 13.6.0 and Chrome 157.0.8103.80 in mobile mode. The values below are medians.
+After descriptive link text was deployed in commit `2831f04`, all five pages were audited three times with Lighthouse CLI 13.6.0 and Chrome 157.0.8103.80 in mobile mode. The values below are medians.
 
 | Page | Path | Performance | Accessibility | Best Practices | SEO | LCP (ms) | CLS | TBT (ms) |
 | --- | --- | ---: | ---: | ---: | ---: | ---: | ---: | ---: |
 | Home | `/` | 99 | 100 | 100 | 100 | 921 | 0.000 | 91 |
 | Projects | `/projects` | 100 | 96 | 100 | 100 | 920 | 0.000 | 67 |
+| Build Log | `/build-log` | 98 | 96 | 100 | 100 | 1,757 | 0.000 | 160 |
+| Day 04 | `/build-log/day-4` | 99 | 100 | 100 | 100 | 1,843 | 0.000 | 69 |
+| Contact | `/contact` | 99 | 96 | 100 | 100 | 1,605 | 0.000 | 102 |
 
-Both pages now pass the SEO target. The PageSpeed Insights screenshot for Home showed no field data; Lighthouse lab TBT is included as a diagnostic because Lighthouse does not measure field INP. Raw JSON reports are kept locally under `.lighthouse-tmp/production-2026-11-24/seo-link-fix/` and are not tracked by Git.
+All five pages meet the LCP, CLS, Accessibility, and SEO targets. The PageSpeed Insights screenshot for Home showed no field data; Lighthouse lab TBT is included as a diagnostic because Lighthouse does not measure field INP. Raw JSON reports are kept locally under `.lighthouse-tmp/production-2026-11-24/seo-link-fix/` and are not tracked by Git.
