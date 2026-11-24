@@ -14,7 +14,7 @@ export function SiteFooter() {
         <Link href="/terms">Terms</Link>
         <a href="https://www.instagram.com/hey.kakaa/" target="_blank" rel="noopener noreferrer">Instagram</a>
       </nav>
-      <span className="hk-footer-disclosure">Optional Google Analytics runs only after you accept.</span>
+      <span className="hk-footer-disclosure">Optional analytics cookies are used only if you accept.</span>
       <CookieSettingsButton />
     </footer>
   );

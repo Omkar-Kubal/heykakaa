@@ -37,16 +37,16 @@ export function AnalyticsConsentNotice() {
   return (
     <aside className="hk-consent-notice" aria-labelledby="hk-consent-title">
       <div className="hk-consent-copy">
-        <h2 id="hk-consent-title">{settingsNotice ? "Change your analytics choice" : "Your analytics choice"}</h2>
+        <h2 id="hk-consent-title">{settingsNotice ? "Change your cookie choice" : "Your cookie choice"}</h2>
         <p>
-          Optional Google Analytics helps me understand page visits and Google Play clicks. It stays off unless you accept.
+          Optional analytics cookies help me understand page visits and Google Play clicks. They stay off unless you accept.
           You can change your choice at any time in the footer.
         </p>
         <a href="/privacy">Read the privacy policy</a>
       </div>
       <div className="hk-consent-actions">
-        <button type="button" onClick={() => choose("accepted")}>Accept analytics</button>
-        <button type="button" onClick={() => choose("rejected")}>Reject analytics</button>
+        <button type="button" onClick={() => choose("accepted")}>Accept cookies</button>
+        <button type="button" onClick={() => choose("rejected")}>Reject cookies</button>
       </div>
     </aside>
   );

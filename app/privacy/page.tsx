@@ -32,7 +32,7 @@ export default function PrivacyPage() {
 
           <h2>Optional analytics</h2>
           <p>
-            Google Analytics through Firebase is off until you choose “Accept analytics” in the site notice. If you reject
+            Google Analytics through Firebase is off until you choose “Accept cookies” in the site notice. If you reject
             or make no choice, this website does not initialize Firebase Analytics. You can change your choice from
             “Cookie settings” in the footer.
           </p>
@@ -59,8 +59,8 @@ export default function PrivacyPage() {
 
           <h2>Cookies and browser storage</h2>
           <p>
-            This website stores your analytics choice in browser local storage so it can remember whether you accepted or
-            rejected analytics. Firebase Analytics may use cookies or similar storage after you accept. Rejecting analytics
+            This website stores your cookie choice in browser local storage so it can remember whether you accepted or
+            rejected optional analytics cookies. Firebase Analytics may use cookies or similar storage after you accept. Rejecting analytics
             prevents Firebase Analytics from being initialized by this website.
           </p>
 
