@@ -40,7 +40,7 @@ export default function ProjectsPage() {
                 </ul>
                 <div className="hk-project-actions">
                   <PlayStoreLink appName={app.name} placement="projects_app_row" className="hk-primary-button" href={app.playUrl}>Get on Google Play <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
-                  <Link className="hk-outline-button" href={`/projects/${app.name.toLowerCase()}`}>Learn more <ArrowUpRight aria-hidden="true" size={15} /></Link>
+                  <Link className="hk-outline-button" href={`/projects/${app.name.toLowerCase()}`}>Learn more about {app.name} <ArrowUpRight aria-hidden="true" size={15} /></Link>
                 </div>
               </div>
               <Link className="hk-project-visual" href={`/projects/${app.name.toLowerCase()}`} aria-label={`View ${app.name} details`}>
@@ -57,7 +57,7 @@ export default function ProjectsPage() {
               <ul className="hk-project-tags" aria-label="Sync Focus features"><li>Timer ring</li><li>Task planning</li><li>Progress</li></ul>
               <div className="hk-project-actions">
                 <PlayStoreLink appName="Sync Focus" placement="projects_app_row" className="hk-primary-button" href={androidApps.syncfocus.playUrl}>Get on Google Play <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
-                <Link className="hk-outline-button" href="/projects/syncfocus">Learn more <ArrowUpRight aria-hidden="true" size={15} /></Link>
+                <Link className="hk-outline-button" href="/projects/syncfocus">Learn more about Sync Focus <ArrowUpRight aria-hidden="true" size={15} /></Link>
               </div>
             </div>
             <Link className="hk-project-visual" href="/projects/syncfocus" aria-label="View Sync Focus details">
