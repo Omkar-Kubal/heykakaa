@@ -99,7 +99,7 @@ export default function Home() {
                 <PlayStoreLink appName={app.name} placement="home_app_card" href={app.playUrl} className="hk-primary-button">
                   Get {app.name}<ArrowUpRight aria-hidden="true" size={15} />
                 </PlayStoreLink>
-                <Link href={`/projects/${app.name.toLowerCase()}`}>Learn more <ArrowUpRight aria-hidden="true" size={14} /></Link>
+                <Link href={`/projects/${app.name.toLowerCase()}`}>Learn more about {app.name} <ArrowUpRight aria-hidden="true" size={14} /></Link>
               </div>
             </article>
           ))}
@@ -117,7 +117,7 @@ export default function Home() {
             <p>{androidApps.syncfocus.description}</p>
             <div className="hk-home-app-actions">
               <PlayStoreLink appName="Sync Focus" placement="home_app_card" href={androidApps.syncfocus.playUrl} className="hk-primary-button">Get Sync Focus <ArrowUpRight aria-hidden="true" size={15} /></PlayStoreLink>
-              <Link href="/projects/syncfocus">Learn more <ArrowUpRight aria-hidden="true" size={14} /></Link>
+              <Link href="/projects/syncfocus">Learn more about Sync Focus <ArrowUpRight aria-hidden="true" size={14} /></Link>
             </div>
           </article>
         </div>
